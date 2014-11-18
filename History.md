@@ -1,3 +1,7 @@
+1.0.0 - November 18, 2014
+-----------------------
+* render files in-place by default
+* remove `default`, `directory` and `inPlace`
 
 0.6.0 - October 3, 2014
 -----------------------
