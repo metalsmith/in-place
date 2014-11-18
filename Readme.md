@@ -1,58 +1,15 @@
-
 # metalsmith-templates
 
-  A metalsmith plugin to render files with templates.
+A fork of [metalsmith-templates](https://github.com/segmentio/metalsmith-templates). The original `metalsmith-templates` uses the `inPlace` flag to switch between either in-place templating or embedding a file within a template, this fork just supports in-place templating. It can be used in conjunction with [ismay/metalsmith-layouts](https://github.com/ismay/metalsmith-layouts), which just embeds source files in templates.
 
-  You can use any templating engine supported by [consolidate.js](https://github.com/visionmedia/consolidate.js).
+This originated in [https://github.com/segmentio/metalsmith-templates/issues/35](https://github.com/segmentio/metalsmith-templates/issues/35). Splitting up `metalsmith-templates` was suggested by Ian Storm Taylor as a way to simplify both use-cases. It allows you to apply templates (or layouts) to your files *and/or* render the templating syntax in your source files.
 
-## Installation
+## Changes
 
-    $ npm install metalsmith-templates
+* The `default`, `directory` and `inPlace` options have been removed
 
-## CLI Usage
-
-  Install the node modules and then add the `metalsmith-templates` key to your `metalsmith.json` plugins. The simplest use case just requires the template engine you want to use:
-
-```json
-{
-  "plugins": {
-    "metalsmith-templates": "handlebars"
-  }
-}
-```
-
-  If you want to specify additional options, pass an object:
-
-```json
-{
-  "plugins": {
-    "metalsmith-templates": {
-      "engine": "handlebars",
-      "directory": "templates"
-    }
-  }
-}
-```
-
-## Javascript Usage
-
-  For the simplest use case, just pass your templating engine:
-
-```js
-var templates = require('metalsmith-templates');
-
-metalsmith.use(templates('swig'));
-```
-
-  To specify additional options:
-
-```js
-metalsmith.use(templates({
-  engine: 'swig',
-  directory: 'templates'
-}));
-```
+For further documentation see the original [metalsmith-templates](https://github.com/segmentio/metalsmith-templates), but keep these differences in mind.
 
 ## License
 
-  MIT
+MIT
