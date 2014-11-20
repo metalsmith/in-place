@@ -10,7 +10,48 @@ This originated in [https://github.com/segmentio/metalsmith-templates/issues/35]
 $ npm install git://github.com/ismay/metalsmith-templates.git
 ```
 
-## Changes
+## Usage
+
+All that this plugin does is process templating syntax in your source files (in-place templating). Pass options to it with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+
+* `engine`: templating engine
+* `pattern`: only files that match this pattern will be processed (optional)
+
+## Example
+
+Configuration in `metalsmith.json`:
+
+```
+{
+  "plugins": {
+    "metalsmith-templates": {
+      "engine": "handlebars"
+    }
+  }
+}
+```
+
+Source file `src/index.html`:
+
+```html
+---
+title: The title
+---
+<p>{{title}}</p>
+```
+
+Results in `dist/index.html`:
+
+```html
+<p>The title</p>
+```
+
+This is of course a very basic example. A more realistic use for this plugin would be:
+
+* Extending templates (like with [handlebars-layouts](https://github.com/shannonmoeller/handlebars-layouts), [swig](http://paularmstrong.github.io/swig/docs/#inheritance) or other templating languages that support template inheritance)
+* Using local and global variables in your source files, whilst still using [layouts](https://github.com/ismay/metalsmith-layouts)
+
+## Differences with segmentio/metalsmith-templates
 
 * The `default`, `directory` and `inPlace` options have been removed
 
