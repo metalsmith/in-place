@@ -1,30 +1,26 @@
-# metalsmith-templates
+# metalsmith-in-place
 
-A fork of [metalsmith-templates](https://github.com/segmentio/metalsmith-templates). The original `metalsmith-templates` uses the `inPlace` flag to switch between either in-place templating or embedding a file within a template, this fork just supports in-place templating. It can be used in conjunction with [ismay/metalsmith-layouts](https://github.com/ismay/metalsmith-layouts), which just embeds source files in templates.
+> A metalsmith plugin for in-place templating
 
-This originated in [https://github.com/segmentio/metalsmith-templates/issues/35](https://github.com/segmentio/metalsmith-templates/issues/35). Splitting up `metalsmith-templates` was suggested by Ian Storm Taylor as a way to simplify both use-cases. It allows you to apply templates (or layouts) to your files *and/or* render the templating syntax in your source files.
+This plugin renders templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js). Pass options to it with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+
+* `engine`: templating engine (required)
+* `pattern`: only files that match this pattern will be processed (optional)
 
 ## Installation
 
 ```
-$ npm install git://github.com/ismay/metalsmith-templates.git
+$ npm install git://github.com/ismay/metalsmith-in-place.git
 ```
-
-## Usage
-
-All that this plugin does is process templating syntax in your source files (in-place templating). Pass options to it with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
-
-* `engine`: templating engine
-* `pattern`: only files that match this pattern will be processed (optional)
 
 ## Example
 
 Configuration in `metalsmith.json`:
 
-```
+```json
 {
   "plugins": {
-    "metalsmith-templates": {
+    "metalsmith-in-place": {
       "engine": "handlebars"
     }
   }
@@ -46,16 +42,16 @@ Results in `dist/index.html`:
 <p>The title</p>
 ```
 
-This is of course a very basic example. A more realistic use for this plugin would be:
+This is a very basic example. A more advanced use of this plugin would be [extending templates](http://paularmstrong.github.io/swig/docs/#inheritance) or combining the use of templating syntax in your source files with [layouts](https://github.com/ismay/metalsmith-layouts).
 
-* Extending templates (like with [handlebars-layouts](https://github.com/shannonmoeller/handlebars-layouts), [swig](http://paularmstrong.github.io/swig/docs/#inheritance) or other templating languages that support template inheritance)
-* Using local and global variables in your source files, whilst still using [layouts](https://github.com/ismay/metalsmith-layouts)
+## Origins
 
-## Differences with segmentio/metalsmith-templates
+This plugin originated in [metalsmith-templates issue #35](https://github.com/segmentio/metalsmith-templates/issues/35). Splitting up `metalsmith-templates` into two plugins was suggested by Ian Storm Taylor. The results are:
 
-* The `default`, `directory` and `inPlace` options have been removed
+* [metalsmith-in-place](https://github.com/ismay/metalsmith-in-place): `metalsmith-templates` with `inPlace: true`
+* [metalsmith-layouts](https://github.com/ismay/metalsmith-layouts): `metalsmith-templates` with `inPlace: false`
 
-For further documentation see the original [metalsmith-templates](https://github.com/segmentio/metalsmith-templates), but keep these differences in mind.
+Both plugins have been optimised for each use case. For `metalsmith-in-place` the `default`, `directory` and `inPlace` options have been removed. For further documentation see [metalsmith-templates](https://github.com/segmentio/metalsmith-templates), but keep these differences in mind.
 
 ## License
 

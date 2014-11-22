@@ -1,3 +1,7 @@
+1.0.1 - November 22, 2014
+-----------------------
+* change name to metalsmith-in-place
+
 1.0.0 - November 18, 2014
 -----------------------
 * render files in-place by default
