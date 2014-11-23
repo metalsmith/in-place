@@ -1,7 +1,8 @@
 {
   "name": "metalsmith-in-place",
+  "author": "superwolff <superwolff@superwolff.nl> (http://superwolff.nl/)",
   "description": "A metalsmith plugin for in-place templating.",
-  "repository": "git://github.com/ismay/metalsmith-in-place.git",
+  "repository": "git://github.com/superwolff/metalsmith-in-place.git",
   "version": "1.0.1",
   "license": "MIT",
   "main": "lib/index.js",
@@ -9,12 +10,12 @@
     "test": "make test"
   },
   "dependencies": {
-    "consolidate": "~0.10.0",
     "async": "~0.2.10",
+    "consolidate": "~0.10.0",
     "debug": "~0.7.4",
     "extend": "~1.2.1",
-    "multimatch": "^0.1.0",
-    "lodash.omit": "~2.4.1"
+    "lodash.omit": "~2.4.1",
+    "multimatch": "^0.1.0"
   },
   "devDependencies": {
     "assert-dir-equal": "0.0.1",
