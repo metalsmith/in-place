@@ -1,6 +1,6 @@
 ---
 title: Matched
-template: layout.html
 ---
+{{title}}
 
 Matched body
