@@ -1,3 +1,10 @@
+1.1.0 - July 19, 2015
+---------------------
+* update tests
+* ignore binary files
+* add travis ci and david dm badges to readme
+* add gitattributes and editorconfig to repo
+
 1.0.1 - November 22, 2014
 -----------------------
 * change name to metalsmith-in-place
