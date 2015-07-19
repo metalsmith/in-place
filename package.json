@@ -14,12 +14,13 @@
     "consolidate": "~0.10.0",
     "debug": "~0.7.4",
     "extend": "~1.2.1",
+    "is-utf8": "^0.2.0",
     "lodash.omit": "~2.4.1",
     "multimatch": "^0.1.0"
   },
   "devDependencies": {
     "assert-dir-equal": "0.0.1",
-    "is-utf8": "^0.2.0",
+    "eslint": "^1.0.0-rc-1",
     "metalsmith": "^1.0.1",
     "mocha": "1.x",
     "swig": "~1.3.2"
