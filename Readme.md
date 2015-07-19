@@ -1,6 +1,6 @@
 # metalsmith-in-place
 
-[![Build Status](https://travis-ci.org/superwolff/metalsmith-in-place.svg)](https://travis-ci.org/superwolff/metalsmith-in-place) [![Dependency Status](https://david-dm.org/superwolff/metalsmith-in-place.svg)](https://david-dm.org/superwolff/metalsmith-in-place) [![devDependency Status](https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg)](https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies)
+[![Release](http://img.shields.io/github/release/superwolff/metalsmith-in-place.svg)](https://github.com/superwolff/metalsmith-in-place/releases) [![Build Status](https://travis-ci.org/superwolff/metalsmith-in-place.svg)](https://travis-ci.org/superwolff/metalsmith-in-place) [![Dependency Status](https://david-dm.org/superwolff/metalsmith-in-place.svg)](https://david-dm.org/superwolff/metalsmith-in-place) [![devDependency Status](https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg)](https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies)
 
 > A metalsmith plugin for in-place templating
 
