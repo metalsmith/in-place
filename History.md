@@ -1,3 +1,9 @@
+1.1.1 - July 20, 2015
+---------------------
+* is-utf8 should be a dependency
+* add eslint
+* add release badge
+
 1.1.0 - July 19, 2015
 ---------------------
 * update tests
