@@ -1,6 +1,6 @@
 # metalsmith-in-place
 
-[![Release](http://img.shields.io/github/release/superwolff/metalsmith-in-place.svg)](https://github.com/superwolff/metalsmith-in-place/releases) [![Build Status](https://travis-ci.org/superwolff/metalsmith-in-place.svg)](https://travis-ci.org/superwolff/metalsmith-in-place) [![Dependency Status](https://david-dm.org/superwolff/metalsmith-in-place.svg)](https://david-dm.org/superwolff/metalsmith-in-place) [![devDependency Status](https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg)](https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies)
+[![npm](https://img.shields.io/npm/v/metalsmith-in-place.svg)](https://www.npmjs.com/package/metalsmith-in-place) [![npm](https://img.shields.io/npm/l/metalsmith-in-place.svg)](https://github.com/superwolff/metalsmith-in-place#license) [![Build Status](https://travis-ci.org/superwolff/metalsmith-in-place.svg)](https://travis-ci.org/superwolff/metalsmith-in-place) [![Dependency Status](https://david-dm.org/superwolff/metalsmith-in-place.svg)](https://david-dm.org/superwolff/metalsmith-in-place) [![devDependency Status](https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg)](https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies) [![npm](https://img.shields.io/npm/dm/metalsmith-in-place.svg)](https://www.npmjs.com/package/metalsmith-in-place)
 
 > A metalsmith plugin for in-place templating
 
