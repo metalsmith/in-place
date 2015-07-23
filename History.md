@@ -1,3 +1,8 @@
+1.2.0 - July 23, 2015
+---------------------
+* update dependencies
+* update and add badges
+
 1.1.1 - July 20, 2015
 ---------------------
 * is-utf8 should be a dependency
