@@ -4,10 +4,12 @@
 
 > A metalsmith plugin for in-place templating
 
-This plugin renders templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js). Pass options to it with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+This plugin renders templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). Pass options to `metalsmith-in-place` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
 
 * `engine`: templating engine (required)
 * `pattern`: only files that match this pattern will be processed (optional)
+
+Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false` to consolidate. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all available options.
 
 ## Installation
 
@@ -48,12 +50,10 @@ This is a very basic example. A more advanced use of this plugin would be [exten
 
 ## Origins
 
-This plugin originated in [metalsmith-templates issue #35](https://github.com/segmentio/metalsmith-templates/issues/35). Splitting up `metalsmith-templates` into two plugins was suggested by Ian Storm Taylor. The results are:
+This plugin is a fork of [metalsmith-templates](https://github.com/segmentio/metalsmith-templates/issues/35). Splitting up `metalsmith-templates` into two plugins was suggested by Ian Storm Taylor. The results are:
 
-* [metalsmith-in-place](https://github.com/superwolff/metalsmith-in-place): `metalsmith-templates` with `inPlace: true`
-* [metalsmith-layouts](https://github.com/superwolff/metalsmith-layouts): `metalsmith-templates` with `inPlace: false`
-
-Both plugins have been optimised for each use case. For `metalsmith-in-place` the `default`, `directory` and `inPlace` options have been removed. For further documentation see [metalsmith-templates](https://github.com/segmentio/metalsmith-templates), but keep these differences in mind.
+* [metalsmith-in-place](https://github.com/superwolff/metalsmith-in-place): render templating syntax in your source files.
+* [metalsmith-layouts](https://github.com/superwolff/metalsmith-layouts): apply layouts to your source files.
 
 ## License
 
