@@ -1,4 +1,3 @@
-
 var assert = require('assert');
 var equal = require('assert-dir-equal');
 var Metalsmith = require('metalsmith');
@@ -52,6 +51,16 @@ describe('metalsmith-in-place', function(){
       .build(function(err){
         if (err) return done(err);
         equal('test/fixtures/binary/expected', 'test/fixtures/binary/build');
+        done();
+      });
+  });
+
+  it('should process swig includes', function(done){
+    Metalsmith('test/fixtures/include')
+      .use(inPlace({ engine: 'swig' }))
+      .build(function(err){
+        if (err) return done(err);
+        equal('test/fixtures/include/expected', 'test/fixtures/include/build');
         done();
       });
   });
