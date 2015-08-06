@@ -8,7 +8,9 @@ describe('metalsmith-in-place', function(){
     Metalsmith('test/fixtures/basic')
       .use(inPlace({ engine: 'swig' }))
       .build(function(err){
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         equal('test/fixtures/basic/expected', 'test/fixtures/basic/build');
         done();
       });
@@ -18,7 +20,9 @@ describe('metalsmith-in-place', function(){
     Metalsmith('test/fixtures/basic')
       .use(inPlace('swig'))
       .build(function(err){
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         equal('test/fixtures/basic/expected', 'test/fixtures/basic/build');
         done();
       });
@@ -28,7 +32,9 @@ describe('metalsmith-in-place', function(){
     Metalsmith('test/fixtures/pattern')
       .use(inPlace({ engine: 'swig', pattern: '*.md' }))
       .build(function(err){
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         equal('test/fixtures/pattern/expected', 'test/fixtures/pattern/build');
         done();
       });
@@ -39,7 +45,9 @@ describe('metalsmith-in-place', function(){
       .metadata({ title: 'Global Title' })
       .use(inPlace({ engine: 'swig' }))
       .build(function(err){
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         equal('test/fixtures/metadata/expected', 'test/fixtures/metadata/build');
         done();
       });
@@ -49,7 +57,9 @@ describe('metalsmith-in-place', function(){
     Metalsmith('test/fixtures/binary')
       .use(inPlace({ engine: 'swig' }))
       .build(function(err){
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         equal('test/fixtures/binary/expected', 'test/fixtures/binary/build');
         done();
       });
@@ -59,9 +69,33 @@ describe('metalsmith-in-place', function(){
     Metalsmith('test/fixtures/include')
       .use(inPlace({ engine: 'swig' }))
       .build(function(err){
-        if (err) return done(err);
+        if (err) {
+          return done(err);
+        }
         equal('test/fixtures/include/expected', 'test/fixtures/include/build');
         done();
       });
   });
+
+  it('should be capable of processing partials multiple times', function(done){
+    var instance = Metalsmith('test/fixtures/partials')
+      .use(inPlace({
+        engine: 'handlebars',
+        partials: 'partials'
+      }));
+
+    instance.build(function(err){
+      if (err) {
+        return done(err);
+      }
+      instance.build(function(err){
+        if (err) {
+          return done(err);
+        }
+        equal('test/fixtures/partials/expected', 'test/fixtures/partials/build');
+        done();
+      });
+    });
+  });
+
 });
