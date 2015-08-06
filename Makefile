@@ -1,4 +1,4 @@
-eslint=node_modules/.bin/eslint lib/index.js test/*.js
+eslint=node_modules/.bin/eslint lib/**/*.js test/*.js
 mocha=node_modules/.bin/mocha --reporter spec --harmony-generators
 
 node_modules: package.json
