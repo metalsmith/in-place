@@ -1,5 +1,9 @@
+1.3.1 - August 6, 2015
+----------------------
+* pass unrecognised `partials` options to consolidate
+
 1.3.0 - August 6, 2015
----------------------
+----------------------
 * add swig include test
 * add error handling for unrecognised engines
 * code style, dependency and readme updates
