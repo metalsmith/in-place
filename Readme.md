@@ -7,9 +7,12 @@
 This plugin renders templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). Pass options to `metalsmith-in-place` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
 
 * `engine`: templating engine (required)
+* `partials`: a folder to scan for partials, will register all found files as partials (optional)
 * `pattern`: only files that match this pattern will be processed (optional)
 
 Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false` to consolidate. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all available options.
+
+Note that consolidates `partials` option isn't accessible, as the implementation of consolidate for `metalsmith-in-place` skips the `readPartials` method. This is why anything other than a string passed to the `partials` option will be discarded.
 
 ## Installation
 
@@ -25,7 +28,8 @@ Configuration in `metalsmith.json`:
 {
   "plugins": {
     "metalsmith-in-place": {
-      "engine": "handlebars"
+      "engine": "handlebars",
+      "partials": "partials"
     }
   }
 }
@@ -37,12 +41,21 @@ Source file `src/index.html`:
 ---
 title: The title
 ---
+{{>nav}}
 <p>{{title}}</p>
+```
+
+Partial file `partials/nav.html`:
+
+```html
+<!-- The partial name is the path relative to the `partials` folder, without the extension -->
+<nav>Nav</nav>
 ```
 
 Results in `dist/index.html`:
 
 ```html
+<nav>Nav</nav>
 <p>The title</p>
 ```
 
