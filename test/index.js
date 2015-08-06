@@ -81,7 +81,7 @@ describe('metalsmith-in-place', function(){
     var instance = Metalsmith('test/fixtures/partials')
       .use(inPlace({
         engine: 'handlebars',
-        partials: { nav: 'partials/nav'}
+        partials: 'partials'
       }));
 
     instance.build(function(err){
