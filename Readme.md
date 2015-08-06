@@ -12,7 +12,7 @@ This plugin renders templating syntax in your source files. You can use any temp
 
 Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false` to consolidate. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all available options.
 
-Note that consolidates `partials` option isn't accessible, as the implementation of consolidate for `metalsmith-in-place` skips the `readPartials` method. This is why anything other than a string passed to the `partials` option will be discarded.
+Note that passing anything but a string to the `partials` option will pass the option on to consolidate. However, the implementation of consolidate for `metalsmith-in-place` skips the `readPartials` method, so don't expect paths to partials to be resolved by consolidate.
 
 ## Installation
 
