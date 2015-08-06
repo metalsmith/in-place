@@ -1,3 +1,10 @@
+1.3.0 - August 6, 2015
+---------------------
+* add swig include test
+* add error handling for unrecognised engines
+* code style, dependency and readme updates
+* add partials option and test
+
 1.2.1 - July 23, 2015
 ---------------------
 * update swig
