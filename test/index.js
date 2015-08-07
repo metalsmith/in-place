@@ -78,10 +78,10 @@ describe('metalsmith-in-place', function(){
   });
 
   it('should be capable of processing partials multiple times', function(done){
-    var instance = Metalsmith('test/fixtures/partials')
+    var instance = Metalsmith('test/fixtures/partials-multiple')
       .use(inPlace({
         engine: 'handlebars',
-        partials: 'partials'
+        partials: {nav: '<p>Nav</p>'}
       }));
 
     instance.build(function(err){
@@ -92,10 +92,25 @@ describe('metalsmith-in-place', function(){
         if (err) {
           return done(err);
         }
-        equal('test/fixtures/partials/expected', 'test/fixtures/partials/build');
+        equal('test/fixtures/partials-multiple/expected', 'test/fixtures/partials-multiple/build');
         done();
       });
     });
+  });
+
+  it('should accept a partials option', function(done){
+    Metalsmith('test/fixtures/partials-option')
+      .use(inPlace({
+        engine: 'handlebars',
+        partials: 'partials'
+      }))
+      .build(function(err){
+        if (err) {
+          return done(err);
+        }
+        equal('test/fixtures/partials-option/expected', 'test/fixtures/partials-option/build');
+        done();
+      });
   });
 
 });
