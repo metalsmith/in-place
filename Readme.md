@@ -4,15 +4,7 @@
 
 > A metalsmith plugin for in-place templating
 
-This plugin renders templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). Pass options to `metalsmith-in-place` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
-
-* `engine`: templating engine (required)
-* `partials`: a folder to scan for partials, will register all found files as partials (optional)
-* `pattern`: only files that match this pattern will be processed (optional)
-
-Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false` to consolidate. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all available options.
-
-Note that passing anything but a string to the `partials` option will pass the option on to consolidate. However, the implementation of consolidate for `metalsmith-in-place` skips the `readPartials` method, so don't expect paths to partials to be resolved by consolidate.
+This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines).
 
 ## Installation
 
@@ -28,8 +20,7 @@ Configuration in `metalsmith.json`:
 {
   "plugins": {
     "metalsmith-in-place": {
-      "engine": "handlebars",
-      "partials": "partials"
+      "engine": "handlebars"
     }
   }
 }
@@ -41,29 +32,82 @@ Source file `src/index.html`:
 ---
 title: The title
 ---
-{{>nav}}
 <p>{{title}}</p>
 ```
 
-Partial file `partials/nav.html`:
+Results in `build/index.html`:
 
 ```html
-<!-- The partial name is the path relative to the `partials` folder, without the extension -->
-<nav>Nav</nav>
-```
-
-Results in `dist/index.html`:
-
-```html
-<nav>Nav</nav>
 <p>The title</p>
 ```
 
-This is a very basic example. A more advanced use of this plugin would be [extending templates](http://paularmstrong.github.io/swig/docs/#inheritance) or combining the use of templating syntax in your source files with [layouts](https://github.com/superwolff/metalsmith-layouts).
+This is a very basic example. A more advanced use of this plugin would be [extending templates](http://paularmstrong.github.io/swig/docs/#inheritance) or combining the use of templating syntax in your source files with [layouts](https://github.com/superwolff/metalsmith-layouts). Note that some templating engines require a `filename` property to be set if you want to include or extend templates. For that, use [metalsmith-filenames](https://github.com/MoOx/metalsmith-filenames).
+
+## Options
+
+You can pass options to `metalsmith-in-place` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+
+* [engine](#engine): templating engine (required)
+* [partials](#partials): directory for the partials (optional)
+* [pattern](#pattern): only files that match this pattern will be processed (optional)
+
+### engine
+
+The engine that will render your templating syntax. Metalsmith-in-place uses [consolidate.js](https://github.com/tj/consolidate.js) to render templating syntax, so any engine [supported by consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines) can be used. Don't forget to install the templating engine separately. So this `metalsmith.json`:
+
+```json
+{
+  "plugins": {
+    "metalsmith-in-place": {
+      "engine": "swig"
+    }
+  }
+}
+```
+
+Will render your templating syntax with swig.
+
+### partials
+
+The directory where `metalsmith-in-place` looks for partials. Each partial is named by removing the file extension from its path (relative to the partials directory), so make sure to avoid duplicates. So this `metalsmith.json`:
+
+```json
+{
+  "plugins": {
+    "metalsmith-in-place": {
+      "engine": "handlebars",
+      "partials": "partials"
+    }
+  }
+}
+```
+
+Would mean that a partial at `partials/nav.html` can be used as `{{> nav }}`, and `partials/nested/footer.html` can be used as `{{> nested/footer }}`. Note that passing anything but a string to the `partials` option will pass the option on to consolidate. However, the implementation of consolidate for `metalsmith-in-place` skips consolidate's `readPartials` method, so paths to partials in the partials object won't be resolved.
+
+### pattern
+
+Only files that match this pattern will be processed. So this `metalsmith.json`:
+
+```json
+{
+  "plugins": {
+    "metalsmith-in-place": {
+      "engine": "handlebars",
+      "pattern": "*.hbs"
+    }
+  }
+}
+```
+
+Would only process files that have the `.hbs` extension.
+
+### Consolidate
+
+Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false`. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all options supported by consolidate.
 
 ## Origins
 
-This plugin is a fork of [metalsmith-templates](https://github.com/segmentio/metalsmith-templates/issues/35). Splitting up `metalsmith-templates` into two plugins was suggested by Ian Storm Taylor. The results are:
+This plugin is a fork of the now deprecated [metalsmith-templates](https://github.com/segmentio/metalsmith-templates). Splitting up `metalsmith-templates` into two plugins was suggested by Ian Storm Taylor. The results are:
 
 * [metalsmith-in-place](https://github.com/superwolff/metalsmith-in-place): render templating syntax in your source files.
 * [metalsmith-layouts](https://github.com/superwolff/metalsmith-layouts): apply layouts to your source files.
