@@ -41,7 +41,7 @@ Results in `build/index.html`:
 <p>The title</p>
 ```
 
-This is a very basic example. A more advanced use of this plugin would be [extending templates](http://paularmstrong.github.io/swig/docs/#inheritance) or combining the use of templating syntax in your source files with [layouts](https://github.com/superwolff/metalsmith-layouts). Note that some templating engines require a `filename` property to be set if you want to include or extend templates. For that, use [metalsmith-filenames](https://github.com/MoOx/metalsmith-filenames).
+This is a very basic example. For a ready-to-use boilerplate that utilizes this plugin see [boilerplate-in-place](https://github.com/superwolff/boilerplate-in-place).
 
 ## Options
 
@@ -104,6 +104,10 @@ Would only process files that have the `.hbs` extension.
 ### Consolidate
 
 Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false`. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all options supported by consolidate.
+
+### Filename property
+
+Some templating engines require a `filename` property to be set on each file, if you want to include or extend templates. For that, use [metalsmith-filenames](https://github.com/MoOx/metalsmith-filenames).
 
 ## Origins
 
