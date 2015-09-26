@@ -10,7 +10,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "async": "^1.4.0",
+    "async": "^1.4.2",
     "consolidate": "^0.13.1",
     "debug": "^2.2.0",
     "extend": "^3.0.0",
@@ -21,10 +21,10 @@
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
-    "eslint": "^1.0.0",
-    "handlebars": "^3.0.3",
-    "metalsmith": "^2.0.1",
-    "mocha": "^2.2.5",
+    "eslint": "^1.5.1",
+    "handlebars": "^4.0.3",
+    "metalsmith": "^2.1.0",
+    "mocha": "^2.3.3",
     "swig": "^1.4.2"
   }
 }

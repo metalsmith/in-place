@@ -41,7 +41,7 @@ Results in `build/index.html`:
 <p>The title</p>
 ```
 
-This is a very basic example. For a ready-to-use boilerplate that utilizes this plugin see [boilerplate-in-place](https://github.com/superwolff/boilerplate-in-place).
+This is a very basic example. For a ready-to-use boilerplate that utilizes this plugin see [metalsmith-boilerplates](https://github.com/superwolff/metalsmith-boilerplates).
 
 ## Options
 
