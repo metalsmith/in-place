@@ -1,3 +1,7 @@
+1.3.2 - October 17, 2015
+--------------------------
+* update fs-readdir-recursive
+
 1.3.1 - August 6, 2015
 ----------------------
 * pass unrecognised `partials` options to consolidate
