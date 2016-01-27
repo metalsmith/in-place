@@ -1,3 +1,7 @@
+1.3.3 - January 27, 2016
+--------------------------
+* update consolidate and lodash.omit
+
 1.3.2 - October 17, 2015
 --------------------------
 * update fs-readdir-recursive
