@@ -113,4 +113,32 @@ describe('metalsmith-in-place', function(){
       });
   });
 
+  it('should rename file extension when rename option is set to TRUE', function(done) {
+    Metalsmith('test/fixtures/rename-option')
+      .use(inPlace({
+        engine: 'handlebars',
+        pattern: '*.hbs',
+        rename: true
+      }))
+      .build(function (err) {
+        if (err) return done(err);
+        equal('test/fixtures/rename-option/expected', 'test/fixtures/rename-option/build');
+        done();
+      });
+  });
+
+  it('should NOT rename file extension when rename option is set to FALSE', function(done) {
+    Metalsmith('test/fixtures/false-rename-option')
+      .use(inPlace({
+        engine: 'handlebars',
+        pattern: '*.hbs',
+        rename: false
+      }))
+      .build(function (err) {
+        if (err) return done(err);
+        equal('test/fixtures/false-rename-option/expected', 'test/fixtures/false-rename-option/build');
+        done();
+      });
+  });
+
 });
