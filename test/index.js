@@ -113,11 +113,22 @@ describe('metalsmith-in-place', function(){
       });
   });
 
-  it('should rename file extension when rename option is set to TRUE', function(done) {
+  it('should not change file extension by default', function(done) {
+    Metalsmith('test/fixtures/rename-option-default')
+      .use(inPlace({
+        engine: 'handlebars'
+      }))
+      .build(function (err) {
+        if (err) return done(err);
+        equal('test/fixtures/rename-option-default/expected', 'test/fixtures/rename-option-default/build');
+        done();
+      });
+  });
+
+  it('should change file extension when rename option is set to true', function(done) {
     Metalsmith('test/fixtures/rename-option')
       .use(inPlace({
         engine: 'handlebars',
-        pattern: '*.hbs',
         rename: true
       }))
       .build(function (err) {
@@ -127,16 +138,15 @@ describe('metalsmith-in-place', function(){
       });
   });
 
-  it('should NOT rename file extension when rename option is set to FALSE', function(done) {
-    Metalsmith('test/fixtures/false-rename-option')
+  it('should change file extension for nested files when rename option is set to true', function(done) {
+    Metalsmith('test/fixtures/rename-option-nested')
       .use(inPlace({
         engine: 'handlebars',
-        pattern: '*.hbs',
-        rename: false
+        rename: true
       }))
       .build(function (err) {
         if (err) return done(err);
-        equal('test/fixtures/false-rename-option/expected', 'test/fixtures/false-rename-option/build');
+        equal('test/fixtures/rename-option-nested/expected', 'test/fixtures/rename-option-nested/build');
         done();
       });
   });
