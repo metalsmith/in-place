@@ -1,5 +1,7 @@
 # metalsmith-in-place
 
+[![Join the chat at https://gitter.im/superwolff/metalsmith-in-place](https://badges.gitter.im/superwolff/metalsmith-in-place.svg)](https://gitter.im/superwolff/metalsmith-in-place?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![npm](https://img.shields.io/npm/v/metalsmith-in-place.svg)](https://www.npmjs.com/package/metalsmith-in-place) [![Build Status](https://travis-ci.org/superwolff/metalsmith-in-place.svg)](https://travis-ci.org/superwolff/metalsmith-in-place) [![Dependency Status](https://david-dm.org/superwolff/metalsmith-in-place.svg)](https://david-dm.org/superwolff/metalsmith-in-place) [![devDependency Status](https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg)](https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies) [![npm](https://img.shields.io/npm/dm/metalsmith-in-place.svg)](https://www.npmjs.com/package/metalsmith-in-place)
 
 > A metalsmith plugin for in-place templating
