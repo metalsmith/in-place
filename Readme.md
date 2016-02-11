@@ -50,6 +50,7 @@ You can pass options to `metalsmith-in-place` with the [Javascript API](https://
 * [engine](#engine): templating engine (required)
 * [partials](#partials): directory for the partials (optional)
 * [pattern](#pattern): only files that match this pattern will be processed (optional)
+* [rename](#rename): change the file extension of processed files to `.html` (optional)
 
 ### engine
 
@@ -100,6 +101,23 @@ Only files that match this pattern will be processed. So this `metalsmith.json`:
 ```
 
 Would only process files that have the `.hbs` extension.
+
+### rename
+
+Change the file extension of processed files to `.html` (optional). This option is set to `false` by default. So for example this `metalsmith.json`:
+
+```json
+{
+  "plugins": {
+    "metalsmith-in-place": {
+      "engine": "handlebars",
+      "rename": true
+    }
+  }
+}
+```
+
+Would rename the extensions of all processed files to `.html`.
 
 ### Consolidate
 
