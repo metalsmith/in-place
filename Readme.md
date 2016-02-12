@@ -5,10 +5,11 @@
 [![dependency status][dependency-badge]][dependency-url]
 [![devdependency status][devdependency-badge]][devdependency-url]
 [![downloads][downloads-badge]][downloads-url]
-[![stack overflow][stackoverflow-badge]][stackoverflow-url]
-[![slack chat][slack-badge]][slack-url]
 
 > A metalsmith plugin for in-place templating
+
+[![stack overflow][stackoverflow-badge]][stackoverflow-url]
+[![slack chat][slack-badge]][slack-url]
 
 This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url].
 
@@ -47,7 +48,7 @@ Results in `build/index.html`:
 <p>The title</p>
 ```
 
-This is a very basic example. For a ready-to-use boilerplate that utilizes this plugin see [metalsmith-boilerplates](https://github.com/superwolff/metalsmith-boilerplates).
+This is a very basic example. For more elaborate examples see the [metalsmith tag on stack overflow][stackoverflow-url].
 
 ## Options
 
