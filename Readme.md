@@ -1,10 +1,16 @@
 # metalsmith-in-place
 
-[![npm](https://img.shields.io/npm/v/metalsmith-in-place.svg)](https://www.npmjs.com/package/metalsmith-in-place) [![Build Status](https://travis-ci.org/superwolff/metalsmith-in-place.svg)](https://travis-ci.org/superwolff/metalsmith-in-place) [![Dependency Status](https://david-dm.org/superwolff/metalsmith-in-place.svg)](https://david-dm.org/superwolff/metalsmith-in-place) [![devDependency Status](https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg)](https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies) [![npm](https://img.shields.io/npm/dm/metalsmith-in-place.svg)](https://www.npmjs.com/package/metalsmith-in-place)
+[![npm version][version-badge]][version-url]
+[![build status][build-badge]][build-url]
+[![dependency status][dependency-badge]][dependency-url]
+[![devdependency status][devdependency-badge]][devdependency-url]
+[![downloads][downloads-badge]][downloads-url]
+[![stack overflow][stackoverflow-badge]][stackoverflow-url]
+[![slack chat][slack-badge]][slack-url]
 
 > A metalsmith plugin for in-place templating
 
-This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines).
+This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url].
 
 ## Installation
 
@@ -137,3 +143,18 @@ This plugin is a fork of the now deprecated [metalsmith-templates](https://githu
 ## License
 
 MIT
+
+[build-badge]: https://travis-ci.org/superwolff/metalsmith-in-place.svg
+[build-url]: https://travis-ci.org/superwolff/metalsmith-in-place
+[dependency-badge]: https://david-dm.org/superwolff/metalsmith-in-place.svg
+[dependency-url]: https://david-dm.org/superwolff/metalsmith-in-place
+[devdependency-badge]: https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg
+[devdependency-url]: https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies
+[downloads-badge]: https://img.shields.io/npm/dm/metalsmith-in-place.svg
+[downloads-url]: https://www.npmjs.com/package/metalsmith-in-place
+[slack-badge]: https://img.shields.io/badge/Slack-Join%20Chat%20→-blue.svg
+[slack-url]: http://metalsmith-slack.herokuapp.com/
+[stackoverflow-badge]: https://img.shields.io/stackexchange/stackoverflow/t/metalsmith.svg
+[stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
+[version-badge]: https://img.shields.io/npm/v/metalsmith-in-place.svg
+[version-url]: https://www.npmjs.com/package/metalsmith-in-place
