@@ -11,7 +11,7 @@
 [![stack overflow][stackoverflow-badge]][stackoverflow-url]
 [![slack chat][slack-badge]][slack-url]
 
-This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url].
+This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [consolidate.js](https://github.com/tj/consolidate.js) and your templating engine of choice.
 
 ## Installation
 
@@ -92,6 +92,8 @@ The directory where `metalsmith-in-place` looks for partials. Each partial is na
 
 Would mean that a partial at `partials/nav.html` can be used as `{{> nav }}`, and `partials/nested/footer.html` can be used as `{{> nested/footer }}`. Note that passing anything but a string to the `partials` option will pass the option on to consolidate. However, the implementation of consolidate for `metalsmith-in-place` skips consolidate's `readPartials` method, so paths to partials in the partials object won't be resolved.
 
+Make sure to check [consolidate.js](https://github.com/tj/consolidate.js) and your templating engine's documentation for guidelines on how to use partials.
+
 ### pattern
 
 Only files that match this pattern will be processed. So this `metalsmith.json`:
@@ -107,7 +109,7 @@ Only files that match this pattern will be processed. So this `metalsmith.json`:
 }
 ```
 
-Would only process files that have the `.hbs` extension.
+Would only process files that have the `.hbs` extension. This can be very useful if your `src` directory contains a lot of large files, as `metalsmith-in-place` will try to process everything by default.
 
 ### rename
 
@@ -155,7 +157,7 @@ MIT
 [downloads-url]: https://www.npmjs.com/package/metalsmith-in-place
 [slack-badge]: https://img.shields.io/badge/Slack-Join%20Chat%20→-blue.svg
 [slack-url]: http://metalsmith-slack.herokuapp.com/
-[stackoverflow-badge]: https://img.shields.io/stackexchange/stackoverflow/t/metalsmith.svg
+[stackoverflow-badge]: https://img.shields.io/badge/stack%20overflow-%23metalsmith-red.svg
 [stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
 [version-badge]: https://img.shields.io/npm/v/metalsmith-in-place.svg
 [version-url]: https://www.npmjs.com/package/metalsmith-in-place
