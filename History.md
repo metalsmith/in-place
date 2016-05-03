@@ -1,3 +1,7 @@
+1.4.4 - May 3, 2016
+-------------------
+* normalize partial name for windows
+
 1.4.3 - February 11, 2016
 -------------------------
 * add rename option
