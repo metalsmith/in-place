@@ -40,6 +40,19 @@ describe('metalsmith-in-place', function(){
       });
   });
 
+  it('should expose consolidate.requires', function(done){
+    Metalsmith('test/fixtures/basic')
+      .use(inPlace({ engine: 'swig', exposeConsolidate: function(requires) {
+        assert.deepEqual(requires, require('consolidate').requires);
+      }}))
+      .build(function(err){
+        if (err) {
+          return done(err);
+        }
+        done();
+      });
+  });
+
   it('should mix in global metadata', function(done){
     Metalsmith('test/fixtures/metadata')
       .metadata({ title: 'Global Title' })
