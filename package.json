@@ -20,6 +20,7 @@
     "npm-run-all": "^2.3.0"
   },
   "dependencies": {
+    "debug": "^2.2.0",
     "extend": "^3.0.0",
     "inputformat-to-jstransformer": "^1.1.8",
     "jstransformer": "^1.0.0",
