@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test:eslint": "eslint '{src,lib}/**/*.js'",
+    "test:unittests": "mocha --reporter spec",
+    "test": "npm-run-all test:*"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
@@ -14,7 +16,8 @@
     "jstransformer-marked": "^1.0.1",
     "jstransformer-swig": "^0.1.2",
     "metalsmith": "^2.1.0",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "npm-run-all": "^2.3.0"
   },
   "dependencies": {
     "extend": "^3.0.0",
