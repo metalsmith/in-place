@@ -86,6 +86,20 @@ describe('metalsmith-in-place', () => {
       });
   });
 
+  it('should skip filenames when transforming', (done) => {
+    const name = 'render-skip-filename';
+
+    metalsmith(fixture(name))
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
+      });
+  });
+
   it('should skip files without an extension', (done) => {
     const name = 'render-skip-no-extension';
 

@@ -1,0 +1,2 @@
+<h1 id="heading">Heading</h1>
+<p>{{ title }}</p>
