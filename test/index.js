@@ -1,167 +1,160 @@
-var assert = require('assert');
-var equal = require('assert-dir-equal');
-var Metalsmith = require('metalsmith');
-var inPlace = require('..');
+/**
+ * Dependencies
+ */
 
-describe('metalsmith-in-place', function(){
-  it('should render a basic template', function(done){
-    Metalsmith('test/fixtures/basic')
-      .use(inPlace({ engine: 'swig' }))
-      .build(function(err){
+const equal = require('assert-dir-equal');
+const metalsmith = require('metalsmith');
+const plugin = require('..');
+
+/**
+ * Tests
+ */
+
+describe('metalsmith-in-place', () => {
+  it('should process relative swig includes', (done) => {
+    const name = 'lang-swig-includes';
+
+    metalsmith(fixture(name))
+      .use(plugin())
+      .build((err) => {
         if (err) {
           return done(err);
         }
-        equal('test/fixtures/basic/expected', 'test/fixtures/basic/build');
-        done();
+        equal(expected(name), build(name));
+        return done();
       });
   });
 
-  it('should accept an engine string', function(done){
-    Metalsmith('test/fixtures/basic')
-      .use(inPlace('swig'))
-      .build(function(err){
-        if (err) {
-          return done(err);
-        }
-        equal('test/fixtures/basic/expected', 'test/fixtures/basic/build');
-        done();
-      });
-  });
+  it('should process handlebars partials defined in the options', (done) => {
+    const name = 'options-handlebars-partials';
+    const partials = { title: 'The title' };
 
-  it('should accept a pattern to match', function(done){
-    Metalsmith('test/fixtures/pattern')
-      .use(inPlace({ engine: 'swig', pattern: '*.md' }))
-      .build(function(err){
-        if (err) {
-          return done(err);
-        }
-        equal('test/fixtures/pattern/expected', 'test/fixtures/pattern/build');
-        done();
-      });
-  });
-
-  it('should expose consolidate.requires', function(done){
-    Metalsmith('test/fixtures/basic')
-      .use(inPlace({ engine: 'swig', exposeConsolidate: function(requires) {
-        assert.deepEqual(requires, require('consolidate').requires);
-      }}))
-      .build(function(err){
-        if (err) {
-          return done(err);
-        }
-        done();
-      });
-  });
-
-  it('should mix in global metadata', function(done){
-    Metalsmith('test/fixtures/metadata')
-      .metadata({ title: 'Global Title' })
-      .use(inPlace({ engine: 'swig' }))
-      .build(function(err){
-        if (err) {
-          return done(err);
-        }
-        equal('test/fixtures/metadata/expected', 'test/fixtures/metadata/build');
-        done();
-      });
-  });
-
-  it('should preserve binary files', function(done){
-    Metalsmith('test/fixtures/binary')
-      .use(inPlace({ engine: 'swig' }))
-      .build(function(err){
-        if (err) {
-          return done(err);
-        }
-        equal('test/fixtures/binary/expected', 'test/fixtures/binary/build');
-        done();
-      });
-  });
-
-  it('should process swig includes', function(done){
-    Metalsmith('test/fixtures/include')
-      .use(inPlace({ engine: 'swig' }))
-      .build(function(err){
-        if (err) {
-          return done(err);
-        }
-        equal('test/fixtures/include/expected', 'test/fixtures/include/build');
-        done();
-      });
-  });
-
-  it('should be capable of processing partials multiple times', function(done){
-    var instance = Metalsmith('test/fixtures/partials-multiple')
-      .use(inPlace({
-        engine: 'handlebars',
-        partials: {nav: '<p>Nav</p>'}
-      }));
-
-    instance.build(function(err){
-      if (err) {
-        return done(err);
-      }
-      instance.build(function(err){
-        if (err) {
-          return done(err);
-        }
-        equal('test/fixtures/partials-multiple/expected', 'test/fixtures/partials-multiple/build');
-        done();
-      });
-    });
-  });
-
-  it('should accept a partials option', function(done){
-    Metalsmith('test/fixtures/partials-option')
-      .use(inPlace({
-        engine: 'handlebars',
-        partials: 'partials'
+    metalsmith(fixture(name))
+      .use(plugin({
+        options: { partials }
       }))
-      .build(function(err){
+      .build((err) => {
         if (err) {
           return done(err);
         }
-        equal('test/fixtures/partials-option/expected', 'test/fixtures/partials-option/build');
-        done();
+        equal(expected(name), build(name));
+        return done();
       });
   });
 
-  it('should not change file extension by default', function(done) {
-    Metalsmith('test/fixtures/rename-option-default')
-      .use(inPlace({
-        engine: 'handlebars'
-      }))
-      .build(function (err) {
-        if (err) return done(err);
-        equal('test/fixtures/rename-option-default/expected', 'test/fixtures/rename-option-default/build');
-        done();
+  it('should only process files that match the pattern', (done) => {
+    const name = 'options-pattern';
+
+    metalsmith(fixture(name))
+      .use(plugin({ pattern: '*.swig' }))
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
       });
   });
 
-  it('should change file extension when rename option is set to true', function(done) {
-    Metalsmith('test/fixtures/rename-option')
-      .use(inPlace({
-        engine: 'handlebars',
-        rename: true
-      }))
-      .build(function (err) {
-        if (err) return done(err);
-        equal('test/fixtures/rename-option/expected', 'test/fixtures/rename-option/build');
-        done();
+  it('should render files with chained transforms', (done) => {
+    const name = 'render-chained';
+
+    metalsmith(fixture(name))
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
       });
   });
 
-  it('should change file extension for nested files when rename option is set to true', function(done) {
-    Metalsmith('test/fixtures/rename-option-nested')
-      .use(inPlace({
-        engine: 'handlebars',
-        rename: true
-      }))
-      .build(function (err) {
-        if (err) return done(err);
-        equal('test/fixtures/rename-option-nested/expected', 'test/fixtures/rename-option-nested/build');
-        done();
+  it('should render files in nested folders', (done) => {
+    const name = 'render-nested';
+
+    metalsmith(fixture(name))
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
       });
   });
 
+  it('should skip files without appropriate transforms', (done) => {
+    const name = 'render-skip';
+
+    metalsmith(fixture(name))
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
+      });
+  });
+
+  it('should process variables defined in the frontmatter', (done) => {
+    const name = 'variables-frontmatter';
+
+    metalsmith(fixture(name))
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
+      });
+  });
+
+  it('should process variables defined in the metadata', (done) => {
+    const name = 'variables-metadata';
+
+    metalsmith(fixture(name))
+      .metadata({ title: 'The title' })
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
+      });
+  });
+
+  it('should prefer frontmatter over metadata variables', (done) => {
+    const name = 'variables-overwrite';
+
+    metalsmith(fixture(name))
+      .metadata({ title: 'The metadata title' })
+      .use(plugin())
+      .build((err) => {
+        if (err) {
+          return done(err);
+        }
+        equal(expected(name), build(name));
+        return done();
+      });
+  });
 });
+
+/**
+ * Utils
+ */
+
+function fixture(name) {
+  return `test/fixtures/${name}`;
+}
+
+function expected(name) {
+  return `test/fixtures/${name}/expected`;
+}
+
+function build(name) {
+  return `test/fixtures/${name}/build`;
+}

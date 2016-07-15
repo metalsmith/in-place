@@ -1,29 +1,25 @@
 {
-  "name": "metalsmith-in-place",
-  "author": "superwolff <superwolff@superwolff.nl> (http://superwolff.nl/)",
-  "description": "A metalsmith plugin for in-place templating.",
-  "repository": "git://github.com/superwolff/metalsmith-in-place.git",
-  "version": "1.4.4",
-  "license": "MIT",
+  "name": "test",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --reporter spec"
   },
-  "dependencies": {
-    "async": "^1.4.2",
-    "consolidate": "^0.14.0",
-    "debug": "^2.2.0",
-    "extend": "^3.0.0",
-    "fs-readdir-recursive": "^1.0.0",
-    "is-utf8": "^0.2.0",
-    "lodash.omit": "^4.0.2",
-    "multimatch": "^2.0.0"
-  },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
-    "handlebars": "^4.0.3",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb-base": "^4.0.0",
+    "eslint-plugin-import": "^1.10.3",
+    "jstransformer-handlebars": "^1.0.0",
+    "jstransformer-marked": "^1.0.1",
+    "jstransformer-swig": "^0.1.2",
     "metalsmith": "^2.1.0",
-    "mocha": "^2.3.3",
-    "swig": "^1.4.2"
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "extend": "^3.0.0",
+    "inputformat-to-jstransformer": "^1.1.8",
+    "jstransformer": "^1.0.0",
+    "multimatch": "^2.1.0"
   }
 }
