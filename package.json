@@ -22,7 +22,8 @@
     "jstransformer-swig": "^0.1.2",
     "metalsmith": "^2.1.0",
     "mocha": "^2.5.3",
-    "npm-run-all": "^2.3.0"
+    "npm-run-all": "^2.3.0",
+    "rimraf": "^2.5.3"
   },
   "dependencies": {
     "debug": "^2.2.0",
