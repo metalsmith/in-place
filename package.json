@@ -1,10 +1,15 @@
 {
-  "name": "test",
-  "version": "1.0.0",
+  "author": "superwolff <superwolff@superwolff.nl> (http://superwolff.nl/)",
+  "description": "A metalsmith plugin for in-place templating.",
+  "license": "MIT",
   "main": "lib/index.js",
+  "name": "metalsmith-in-place",
+  "repository": "git://github.com/superwolff/metalsmith-in-place.git",
+  "version": "2.0.0",
   "scripts": {
+    "debug": "DEBUG=metalsmith-in-place mocha --reporter spec",
     "test:eslint": "eslint '{src,lib}/**/*.js'",
-    "test:unittests": "mocha --reporter spec",
+    "test:test": "mocha --reporter spec",
     "test": "npm-run-all test:*"
   },
   "devDependencies": {
