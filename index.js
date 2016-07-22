@@ -31,10 +31,10 @@ module.exports = function plugin(opts) {
       if (!checkFile(filename, pattern)) return done();
 
       // Transform file
-      const results = renderFile(files, filename, metadata, source, options);
+      const newname = renderFile(files, filename, metadata, source, options);
 
       // Save results
-      saveFile(files, filename, results, done);
+      saveFile(files, filename, newname, done);
     });
   };
 };
