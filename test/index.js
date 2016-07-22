@@ -15,6 +15,20 @@ const rimraf = require('rimraf');
  */
 
 describe('metalsmith-in-place', () => {
+  it('should process relative jade includes', (done) => {
+    const folder = 'lang-jade-includes';
+    const metalsmith = new Metalsmith(fixture(folder));
+
+    runTest(folder, {}, metalsmith, done);
+  });
+
+  it('should process relative nunjucks includes', (done) => {
+    const folder = 'lang-nunjucks-includes';
+    const metalsmith = new Metalsmith(fixture(folder));
+
+    runTest(folder, {}, metalsmith, done);
+  });
+
   it('should process relative swig includes', (done) => {
     const folder = 'lang-swig-includes';
     const metalsmith = new Metalsmith(fixture(folder));
