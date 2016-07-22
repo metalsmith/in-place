@@ -17,7 +17,6 @@
     "eslint": "^3.0.1",
     "eslint-config-airbnb-base": "^4.0.0",
     "eslint-plugin-import": "^1.10.3",
-    "jstransformer-haml": "^0.1.0",
     "jstransformer-handlebars": "^1.0.0",
     "jstransformer-jade": "^0.1.1",
     "jstransformer-marked": "^1.0.1",
