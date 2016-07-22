@@ -52,6 +52,13 @@ describe('metalsmith-in-place', () => {
     runTest(folder, {}, metalsmith, done);
   });
 
+  it('should replace the last extension when transformed', (done) => {
+    const folder = 'render-replace-ext';
+    const metalsmith = new Metalsmith(fixture(folder));
+
+    runTest(folder, {}, metalsmith, done);
+  });
+
   it('should skip filenames when transforming', (done) => {
     const folder = 'render-skip-filename';
     const metalsmith = new Metalsmith(fixture(folder));
