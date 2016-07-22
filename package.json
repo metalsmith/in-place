@@ -2,7 +2,7 @@
   "author": "superwolff <superwolff@superwolff.nl> (http://superwolff.nl/)",
   "description": "A metalsmith plugin for in-place templating.",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/superwolff/metalsmith-in-place.git",
   "version": "2.0.0",
