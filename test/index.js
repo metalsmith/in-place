@@ -126,6 +126,22 @@ describe('metalsmith-in-place', function(){
       });
   });
 
+  it('should filter partials by given pattern', function(done){
+    Metalsmith('test/fixtures/partials-pattern')
+      .use(inPlace({
+        engine: 'handlebars',
+        partials: 'partials',
+        partialsPattern: '**/*.(html|hbs)'
+      }))
+      .build(function(err){
+        if (err) {
+          return done(err);
+        }
+        equal('test/fixtures/partials-pattern/expected', 'test/fixtures/partials-pattern/build');
+        done();
+      });
+  });
+
   it('should not change file extension by default', function(done) {
     Metalsmith('test/fixtures/rename-option-default')
       .use(inPlace({

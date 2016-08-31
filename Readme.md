@@ -94,6 +94,24 @@ Would mean that a partial at `partials/nav.html` can be used as `{{> nav }}`, an
 
 Make sure to check [consolidate.js](https://github.com/tj/consolidate.js) and your templating engine's documentation for guidelines on how to use partials.
 
+### partialsPattern
+
+Only files that match this pattern will be imported as partials. So this `metalsmith.json`:
+
+```json
+{
+  "plugins": {
+    "metalsmith-in-place": {
+      "engine": "handlebars",
+      "partials": "partials",
+      "partialsPattern": "*.hbs"
+    }
+  }
+}
+```
+
+Would only import files that have the `.hbs` extension. This can be useful if your partials directory contains multiple files with same name and different extension, since in that case `metalsmith-in-place` will only import one of them as a partial and it might be the wrong one.
+
 ### pattern
 
 Only files that match this pattern will be processed. So this `metalsmith.json`:
