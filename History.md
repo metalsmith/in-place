@@ -1,3 +1,7 @@
+2.0.0-beta - September 11, 2016
+-------------------------------
+* switch to jstransformers for rendering (breaking change)
+
 1.4.4 - May 3, 2016
 -------------------
 * normalize partial name for windows

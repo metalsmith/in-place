@@ -2,16 +2,16 @@
 
 [![npm version][version-badge]][version-url]
 [![build status][build-badge]][build-url]
-[![dependency status][dependency-badge]][dependency-url]
-[![devdependency status][devdependency-badge]][devdependency-url]
 [![downloads][downloads-badge]][downloads-url]
+[![slack chat][slack-badge]][slack-url]
 
 > A metalsmith plugin for in-place templating
 
-[![stack overflow][stackoverflow-badge]][stackoverflow-url]
-[![slack chat][slack-badge]][slack-url]
+**This documentation is for the 2.0.0-beta. This version will not be installed automatically and has been released for testing purposes, check [here](https://github.com/superwolff/metalsmith-in-place/blob/7cb06e54142b8843f35178ceb5560946ae356049/Readme.md) for the readme for the latest stable version. If you're using the beta please let us know about any bugs!**
 
-This plugin allows you to render templating syntax in your source files. You can use any templating engine supported by [consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines). For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [consolidate.js](https://github.com/tj/consolidate.js) and your templating engine of choice.
+This plugin allows you to render templates with [jstransformer](https://github.com/jstransformers/jstransformer). Files will be transformed based on their extension, last extension first. Transformations are applied until there are no more applicable jstransformers.
+
+Though its main purpose is rendering templates, any jstransformer compatible plugin can be used. For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url].
 
 ## Installation
 
@@ -19,21 +19,27 @@ This plugin allows you to render templating syntax in your source files. You can
 $ npm install metalsmith-in-place
 ```
 
+Make sure that the jstransformers that you want to use are installed as well.
+
 ## Example
+
+Install [jstransformer-handlebars](https://github.com/jstransformers/jstransformer-handlebars) to enable the handlebars transformation:
+
+```
+$ npm install jstransformer-handlebars
+```
 
 Configuration in `metalsmith.json`:
 
 ```json
 {
   "plugins": {
-    "metalsmith-in-place": {
-      "engine": "handlebars"
-    }
+    "metalsmith-in-place": true
   }
 }
 ```
 
-Source file `src/index.html`:
+Source file `src/index.html.handlebars`:
 
 ```html
 ---
@@ -48,51 +54,12 @@ Results in `build/index.html`:
 <p>The title</p>
 ```
 
-This is a very basic example. For more elaborate examples see the [metalsmith tag on stack overflow][stackoverflow-url].
-
 ## Options
 
 You can pass options to `metalsmith-in-place` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
 
-* [engine](#engine): templating engine (required)
-* [partials](#partials): directory for the partials (optional)
-* [pattern](#pattern): only files that match this pattern will be processed (optional)
-* [rename](#rename): change the file extension of processed files to `.html` (optional)
-
-### engine
-
-The engine that will render your templating syntax. Metalsmith-in-place uses [consolidate.js](https://github.com/tj/consolidate.js) to render templating syntax, so any engine [supported by consolidate.js](https://github.com/tj/consolidate.js#supported-template-engines) can be used. Don't forget to install the templating engine separately. So this `metalsmith.json`:
-
-```json
-{
-  "plugins": {
-    "metalsmith-in-place": {
-      "engine": "swig"
-    }
-  }
-}
-```
-
-Will render your templating syntax with swig.
-
-### partials
-
-The directory where `metalsmith-in-place` looks for partials. Each partial is named by removing the file extension from its path (relative to the partials directory), so make sure to avoid duplicates. So this `metalsmith.json`:
-
-```json
-{
-  "plugins": {
-    "metalsmith-in-place": {
-      "engine": "handlebars",
-      "partials": "partials"
-    }
-  }
-}
-```
-
-Would mean that a partial at `partials/nav.html` can be used as `{{> nav }}`, and `partials/nested/footer.html` can be used as `{{> nested/footer }}`. Note that passing anything but a string to the `partials` option will pass the option on to consolidate. However, the implementation of consolidate for `metalsmith-in-place` skips consolidate's `readPartials` method, so paths to partials in the partials object won't be resolved.
-
-Make sure to check [consolidate.js](https://github.com/tj/consolidate.js) and your templating engine's documentation for guidelines on how to use partials.
+* pattern: only files that match this pattern will be processed (optional, default: `**`)
+* options: an object with options that will be passed to the jstransformer (optional)
 
 ### pattern
 
@@ -102,61 +69,36 @@ Only files that match this pattern will be processed. So this `metalsmith.json`:
 {
   "plugins": {
     "metalsmith-in-place": {
-      "engine": "handlebars",
-      "pattern": "*.hbs"
+      "pattern": "**/*.handlebars"
     }
   }
 }
 ```
 
-Would only process files that have the `.hbs` extension. This can be very useful if your `src` directory contains a lot of large files, as `metalsmith-in-place` will try to process everything by default.
+Would only process files that have the `.handlebars` extension.
 
-### rename
+### options
 
-Change the file extension of processed files to `.html` (optional). This option is set to `false` by default. So for example this `metalsmith.json`:
+These options will be passed on to jstransformer. How these options will be used differs from transformer to transformer. For example, the [jstransformer-handlebars](https://github.com/jstransformers/jstransformer-handlebars) allows you to define partials in the options like so:
 
 ```json
 {
   "plugins": {
     "metalsmith-in-place": {
-      "engine": "handlebars",
-      "rename": true
+      "options": {
+        "title": "The title"
+      }
     }
   }
 }
 ```
 
-Would rename the extensions of all processed files to `.html`.
+Which would allow you to use the partial as `{{> title}}`. See the documentation for the transformer that you want to use for more details.
 
-### exposeConsolidate
+## Credits
 
-Not available over the `metalsmith.json` file.
-Exposes Consolidate.requires as a function.
-
-```js
-// ...
-.use(inPlace('swig', {
-  exposeConsolidate: function(requires) {
-    // your code here
-  }
-}))
-// ...
-```
-
-### Consolidate
-
-Any unrecognised options will be passed on to consolidate.js. You can use this, for example, to disable caching by passing `cache: false`. See the [consolidate.js documentation](https://github.com/tj/consolidate.js) for all options supported by consolidate.
-
-### Filename property
-
-Some templating engines require a `filename` property to be set on each file, if you want to include or extend templates. For that, use [metalsmith-filenames](https://github.com/MoOx/metalsmith-filenames).
-
-## Origins
-
-This plugin is a fork of the now deprecated [metalsmith-templates](https://github.com/segmentio/metalsmith-templates). Splitting up `metalsmith-templates` into two plugins was suggested by Ian Storm Taylor. The results are:
-
-* [metalsmith-in-place](https://github.com/superwolff/metalsmith-in-place): render templating syntax in your source files.
-* [metalsmith-layouts](https://github.com/superwolff/metalsmith-layouts): apply layouts to your source files.
+* [Ian Storm Taylor](https://github.com/ianstormtaylor) for creating [metalsmith-templates](https://github.com/segmentio/metalsmith-templates), on which this plugin was based
+* [Rob Loach](https://github.com/RobLoach) for creating [metalsmith-jstransformer](https://github.com/RobLoach/metalsmith-jstransformer), which inspired our switch to jstransformers
 
 ## License
 
@@ -164,15 +106,10 @@ MIT
 
 [build-badge]: https://travis-ci.org/superwolff/metalsmith-in-place.svg
 [build-url]: https://travis-ci.org/superwolff/metalsmith-in-place
-[dependency-badge]: https://david-dm.org/superwolff/metalsmith-in-place.svg
-[dependency-url]: https://david-dm.org/superwolff/metalsmith-in-place
-[devdependency-badge]: https://david-dm.org/superwolff/metalsmith-in-place/dev-status.svg
-[devdependency-url]: https://david-dm.org/superwolff/metalsmith-in-place#info=devDependencies
 [downloads-badge]: https://img.shields.io/npm/dm/metalsmith-in-place.svg
 [downloads-url]: https://www.npmjs.com/package/metalsmith-in-place
 [slack-badge]: https://img.shields.io/badge/Slack-Join%20Chat%20→-blue.svg
 [slack-url]: http://metalsmith-slack.herokuapp.com/
-[stackoverflow-badge]: https://img.shields.io/badge/stack%20overflow-%23metalsmith-red.svg
-[stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
 [version-badge]: https://img.shields.io/npm/v/metalsmith-in-place.svg
 [version-url]: https://www.npmjs.com/package/metalsmith-in-place
+[stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith

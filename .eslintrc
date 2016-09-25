@@ -1,8 +1,18 @@
-env:
-  node: true
-rules:
-  indent: [2, 2]
-  linebreak-style: 2
-  no-irregular-whitespace: 2
-  no-trailing-spaces: 2
-  quotes: [2, "single", "avoid-escape"]
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "comma-dangle": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-param-reassign": "off",
+    "no-underscore-dangle": "off",
+    "no-use-before-define": "off",
+    "strict": "off",
+    "vars-on-top": "off"
+  },
+  "env": {
+    "node": true,
+    "mocha": true
+  }
+}
