@@ -1,12 +1,17 @@
 'use strict';
 
 /**
+ * Dependencies
+ */
+
+const debug = require('debug')('metalsmith-in-place');
+
+/**
  * Local
  */
 
 const checkFile = require('./lib/check-file');
 const renderFile = require('./lib/render-file');
-const saveFile = require('./lib/save-file');
 
 /**
  * Main export
@@ -27,14 +32,24 @@ module.exports = function plugin(opts) {
 
     // Loop through all files
     Object.keys(files).forEach((filename) => {
-      // Check file, skip processing if it fails
-      if (!checkFile(filename, pattern)) return done();
+      // Check file, only process if it passes
+      if (checkFile(filename, pattern)) {
+        // Transform file
+        const newname = renderFile(files, filename, metadata, source, options);
 
-      // Transform file
-      const newname = renderFile(files, filename, metadata, source, options);
-
-      // Save results
-      saveFile(files, filename, newname, done);
+        // Do nothing if there were no transforms
+        if (newname === filename) {
+          debug(`'${filename}' wasn't modified`);
+        } else {
+          // If there were transforms store new file and delete the old
+          files[newname] = files[filename];
+          delete files[filename];
+          debug(`'${filename}' transformed to '${newname}'`);
+        }
+      }
     });
+
+    debug('all files processed');
+    done();
   };
 };
