@@ -5,7 +5,7 @@
   "main": "index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/superwolff/metalsmith-in-place.git",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.1",
   "scripts": {
     "debug": "DEBUG=metalsmith-in-place mocha --reporter spec",
     "test:eslint": "eslint '{src,lib}/**/*.js'",

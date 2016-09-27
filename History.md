@@ -1,4 +1,4 @@
-2.0.0-beta - September 11, 2016
+2.0.0-beta.1 - September 11, 2016
 -------------------------------
 * switch to jstransformers for rendering (breaking change)
 
