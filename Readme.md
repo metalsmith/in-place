@@ -7,7 +7,7 @@
 
 > A metalsmith plugin for in-place templating
 
-**This documentation is for the 2.0.0-beta. This version will not be installed automatically and has been released for testing purposes, check [here](https://github.com/superwolff/metalsmith-in-place/blob/7cb06e54142b8843f35178ceb5560946ae356049/Readme.md) for the readme for the latest stable version. If you're using the beta please let us know about any bugs!**
+**This documentation is for the 2.0.0-beta.1. This version will not be installed automatically and has been released for testing purposes, check [here](https://github.com/superwolff/metalsmith-in-place/blob/7cb06e54142b8843f35178ceb5560946ae356049/Readme.md) for the readme for the latest stable version. If you're using the beta please let us know about any bugs!**
 
 This plugin allows you to render templates with [jstransformer](https://github.com/jstransformers/jstransformer). Files will be transformed based on their extension, last extension first. Transformations are applied until there are no more applicable jstransformers.
 
