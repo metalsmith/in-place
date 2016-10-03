@@ -35,6 +35,7 @@
     "extend": "^3.0.0",
     "inputformat-to-jstransformer": "^1.1.8",
     "jstransformer": "^1.0.0",
-    "multimatch": "^2.1.0"
+    "multimatch": "^2.1.0",
+    "string-includes": "^1.0.1"
   }
 }
