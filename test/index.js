@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-var, prefer-arrow-callback */
+/* eslint-disable no-var, prefer-arrow-callback, object-shorthand */
 
 /**
  * Dependencies
@@ -35,7 +35,7 @@ describe('metalsmith-in-place', function () {
     var folder = 'options-handlebars-partials';
     var metalsmith = new Metalsmith(fixture(folder));
     var partials = { title: 'The title' };
-    var options = { options: { partials } };
+    var options = { options: { partials: partials } };
 
     runTest(folder, options, metalsmith, done);
   });
