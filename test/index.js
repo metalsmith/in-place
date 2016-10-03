@@ -1,110 +1,112 @@
 'use strict';
 
+/* eslint-disable no-var, prefer-arrow-callback */
+
 /**
  * Dependencies
  */
 
-const equal = require('assert-dir-equal');
-const Metalsmith = require('metalsmith');
-const path = require('path');
-const plugin = require('..');
-const rimraf = require('rimraf');
+var equal = require('assert-dir-equal');
+var Metalsmith = require('metalsmith');
+var path = require('path');
+var plugin = require('..');
+var rimraf = require('rimraf');
 
 /**
  * Tests
  */
 
-describe('metalsmith-in-place', () => {
-  it('should process relative jade includes', (done) => {
-    const folder = 'lang-jade-includes';
-    const metalsmith = new Metalsmith(fixture(folder));
+describe('metalsmith-in-place', function () {
+  it('should process relative jade includes', function (done) {
+    var folder = 'lang-jade-includes';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should process relative swig includes', (done) => {
-    const folder = 'lang-swig-includes';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should process relative swig includes', function (done) {
+    var folder = 'lang-swig-includes';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should process handlebars partials defined in the options', (done) => {
-    const folder = 'options-handlebars-partials';
-    const metalsmith = new Metalsmith(fixture(folder));
-    const partials = { title: 'The title' };
-    const options = { options: { partials } };
+  it('should process handlebars partials defined in the options', function (done) {
+    var folder = 'options-handlebars-partials';
+    var metalsmith = new Metalsmith(fixture(folder));
+    var partials = { title: 'The title' };
+    var options = { options: { partials } };
 
     runTest(folder, options, metalsmith, done);
   });
 
-  it('should only process files that match the pattern', (done) => {
-    const folder = 'options-pattern';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should only process files that match the pattern', function (done) {
+    var folder = 'options-pattern';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, { pattern: '*.swig' }, metalsmith, done);
   });
 
-  it('should render files with chained transforms', (done) => {
-    const folder = 'render-chained';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should render files with chained transforms', function (done) {
+    var folder = 'render-chained';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should render files in nested folders', (done) => {
-    const folder = 'render-nested';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should render files in nested folders', function (done) {
+    var folder = 'render-nested';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should replace the last extension when transformed', (done) => {
-    const folder = 'render-replace-ext';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should replace the last extension when transformed', function (done) {
+    var folder = 'render-replace-ext';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should skip filenames when transforming', (done) => {
-    const folder = 'render-skip-filename';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should skip filenames when transforming', function (done) {
+    var folder = 'render-skip-filename';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should skip files without an extension', (done) => {
-    const folder = 'render-skip-no-extension';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should skip files without an extension', function (done) {
+    var folder = 'render-skip-no-extension';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should skip files without appropriate transforms', (done) => {
-    const folder = 'render-skip-no-transform';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should skip files without appropriate transforms', function (done) {
+    var folder = 'render-skip-no-transform';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should process variables defined in the frontmatter', (done) => {
-    const folder = 'variables-frontmatter';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should process variables defined in the frontmatter', function (done) {
+    var folder = 'variables-frontmatter';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should process variables defined in the metadata', (done) => {
-    const folder = 'variables-metadata';
-    const metadata = { title: 'The title' };
-    const metalsmith = new Metalsmith(fixture(folder)).metadata(metadata);
+  it('should process variables defined in the metadata', function (done) {
+    var folder = 'variables-metadata';
+    var metadata = { title: 'The title' };
+    var metalsmith = new Metalsmith(fixture(folder)).metadata(metadata);
 
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should prefer frontmatter over metadata variables', (done) => {
-    const folder = 'variables-overwrite';
-    const metalsmith = new Metalsmith(fixture(folder));
+  it('should prefer frontmatter over metadata variables', function (done) {
+    var folder = 'variables-overwrite';
+    var metalsmith = new Metalsmith(fixture(folder));
 
     runTest(folder, {}, metalsmith, done);
   });
@@ -131,7 +133,7 @@ function runTest(folder, options, metalsmith, done) {
 
   return metalsmith
     .use(plugin(options))
-    .build((err) => {
+    .build(function (err) {
       if (err) return done(err);
       equal(expected(folder), build(folder));
       return done();
