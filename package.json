@@ -10,9 +10,9 @@
     "build": "babel -d build/ lib/",
     "prepublish": "npm run build",
     "debug": "DEBUG=metalsmith-in-place mocha --reporter spec",
-    "test:lint": "eslint '{lib,test}/**/*.js'",
-    "test:test": "mocha --reporter spec",
-    "test": "npm-run-all build test:*"
+    "eslint": "eslint '{lib,test}/**/*.js'",
+    "mocha": "mocha --reporter spec",
+    "test": "npm run build && npm run mocha"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
@@ -27,7 +27,6 @@
     "jstransformer-swig": "^0.1.2",
     "metalsmith": "^2.1.0",
     "mocha": "^2.5.3",
-    "npm-run-all": "^2.3.0",
     "rimraf": "^2.5.3"
   },
   "dependencies": {
