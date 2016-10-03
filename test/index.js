@@ -3,6 +3,12 @@
 /* eslint-disable no-var, prefer-arrow-callback, object-shorthand */
 
 /**
+ * Enable --harmony flag if needed
+ */
+
+require('harmonize')();
+
+/**
  * Dependencies
  */
 

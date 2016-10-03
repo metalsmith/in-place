@@ -10,9 +10,9 @@
     "build": "babel -d build/ lib/",
     "prepublish": "npm run build",
     "debug": "DEBUG=metalsmith-in-place mocha --reporter spec",
-    "eslint": "eslint '{lib,test}/**/*.js'",
-    "mocha": "mocha --reporter spec",
-    "test": "npm run build && npm run mocha"
+    "test:eslint": "eslint '{lib,test}/**/*.js'",
+    "test:mocha": "mocha --reporter spec",
+    "test": "npm run build && npm run test:mocha"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
@@ -21,6 +21,7 @@
     "eslint": "^3.0.1",
     "eslint-config-airbnb-base": "^4.0.0",
     "eslint-plugin-import": "^1.10.3",
+    "harmonize": "^1.4.4",
     "jstransformer-handlebars": "^1.0.0",
     "jstransformer-jade": "^0.1.1",
     "jstransformer-marked": "^1.0.1",
