@@ -1,3 +1,7 @@
+# Node
 node_modules
 npm-debug.log
+
+# Build results
 test/fixtures/*/build
+/build
