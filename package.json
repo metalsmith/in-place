@@ -7,23 +7,28 @@
   "repository": "git://github.com/superwolff/metalsmith-in-place.git",
   "version": "2.0.0-beta.1",
   "scripts": {
+    "build:lib": "babel ./lib/**/*.es6 -d ./",
+    "build:test": "babel ./test/**/*.es6 -d ./",
+    "prepublish": "npm run build:lib",
     "debug": "DEBUG=metalsmith-in-place mocha --reporter spec",
-    "test:eslint": "eslint '{src,lib}/**/*.js'",
-    "test:test": "mocha --reporter spec",
-    "test": "npm-run-all test:*"
+    "test:eslint": "eslint '{lib,test}/**/*.es6'",
+    "test:mocha": "mocha --reporter spec",
+    "test": "npm run build:lib && npm run build:test && npm run test:mocha"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
     "eslint": "^3.0.1",
     "eslint-config-airbnb-base": "^4.0.0",
     "eslint-plugin-import": "^1.10.3",
+    "harmonize": "^1.4.4",
     "jstransformer-handlebars": "^1.0.0",
     "jstransformer-jade": "^0.1.1",
     "jstransformer-marked": "^1.0.1",
     "jstransformer-swig": "^0.1.2",
     "metalsmith": "^2.1.0",
     "mocha": "^2.5.3",
-    "npm-run-all": "^2.3.0",
     "rimraf": "^2.5.3"
   },
   "dependencies": {
@@ -31,6 +36,7 @@
     "extend": "^3.0.0",
     "inputformat-to-jstransformer": "^1.1.8",
     "jstransformer": "^1.0.0",
-    "multimatch": "^2.1.0"
+    "multimatch": "^2.1.0",
+    "string-includes": "^1.0.1"
   }
 }

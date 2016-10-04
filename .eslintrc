@@ -14,5 +14,11 @@
   "env": {
     "node": true,
     "mocha": true
+  },
+  settings: {
+    "import/extensions": [
+      '.js',
+      '.es6'
+    ]
   }
 }

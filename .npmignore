@@ -1,0 +1,13 @@
+# Dotfiles
+.babelrc
+.editorconfig
+.eslintrc
+.gitattributes
+.gitignore
+.travis.yml
+
+# ES6 code
+/lib/**/*.es6
+
+# Tests
+/test

@@ -1,6 +1,12 @@
 'use strict';
 
 /**
+ * Enable --harmony flag if needed
+ */
+
+require('harmonize')();
+
+/**
  * Dependencies
  */
 
