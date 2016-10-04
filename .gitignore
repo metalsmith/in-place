@@ -4,4 +4,5 @@ npm-debug.log
 
 # Build results
 test/fixtures/*/build
-/build
+test/**/*.js
+lib/**/*.js

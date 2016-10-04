@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 .babelrc
 .editorconfig
 .eslintrc
@@ -7,5 +7,7 @@
 .travis.yml
 
 # ES6 code
-/lib
+/lib/**/*.es6
+
+# Tests
 /test
