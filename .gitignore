@@ -2,7 +2,8 @@
 node_modules
 npm-debug.log
 
-# Build results
+# Test build results
 test/fixtures/*/build
-test/**/*.js
-lib/**/*.js
+
+# Babel build results
+dist

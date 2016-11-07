@@ -7,7 +7,7 @@
 .travis.yml
 
 # ES6 code
-/lib/**/*.es6
+/lib
 
 # Tests
 /test

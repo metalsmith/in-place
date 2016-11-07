@@ -13,7 +13,7 @@ require('harmonize')();
 const equal = require('assert-dir-equal');
 const Metalsmith = require('metalsmith');
 const path = require('path');
-const plugin = require('..');
+const plugin = require('../lib');
 const rimraf = require('rimraf');
 
 /**
