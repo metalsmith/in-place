@@ -35,13 +35,13 @@ describe('metalsmith-in-place', () => {
     runTest(folder, {}, metalsmith, done);
   });
 
-  it('should process handlebars partials defined in the options', (done) => {
+  it('should process handlebars partials defined in the render-options', (done) => {
     const folder = 'options-handlebars-partials';
     const metalsmith = new Metalsmith(fixture(folder));
     const partials = { title: 'The title' };
-    const options = { options: { partials } };
+    const engineOptions = { engineOptions: { partials } };
 
-    runTest(folder, options, metalsmith, done);
+    runTest(folder, engineOptions, metalsmith, done);
   });
 
   it('should only process files that match the pattern', (done) => {
