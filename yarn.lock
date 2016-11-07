@@ -218,7 +218,7 @@ babel-code-frame@^6.16.0:
     esutils "^2.0.2"
     js-tokens "^2.0.0"
 
-babel-core@^6.18.0:
+babel-core@^6.18.0, babel-core@^6.18.2:
   version "6.18.2"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.18.2.tgz#d8bb14dd6986fa4f3566a26ceda3964fa0e04e5b"
   dependencies:
