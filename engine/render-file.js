@@ -4,7 +4,6 @@
  * Dependencies
  */
 
-const debug = require('debug')('metalsmith-in-place');
 const extend = require('extend');
 const path = require('path');
 
@@ -38,7 +37,6 @@ module.exports = function renderFile(files, filename, metadata, source, options)
 
     // If the current extension can't be transformed stop looping
     if (!transform) {
-      debug(`no transformer found for '${extension}'`);
       parts.push(extension);
       break;
     }

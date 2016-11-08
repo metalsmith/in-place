@@ -1,6 +1,0 @@
----
-title: about
----
-# Heading
-
-{{ title }}
