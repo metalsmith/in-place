@@ -39,9 +39,9 @@ describe('metalsmith-in-place', () => {
     const folder = 'options-handlebars-partials';
     const metalsmith = new Metalsmith(fixture(folder));
     const partials = { title: 'The title' };
-    const engineOptions = { engineOptions: { partials } };
+    const options = { engineOptions: { partials } };
 
-    runTest(folder, engineOptions, metalsmith, done);
+    runTest(folder, options, metalsmith, done);
   });
 
   it('should only process files that match the pattern', (done) => {
