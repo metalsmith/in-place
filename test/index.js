@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 // Enable --harmony flag if needed
 require('harmonize')();
 

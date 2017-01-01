@@ -4,7 +4,10 @@
     "node": true,
     "mocha": true
   },
-  settings: {
-    "import/extensions": ['.js']
+  "settings": {
+    "import/extensions": [".js"]
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0
   }
 }
