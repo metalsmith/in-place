@@ -1131,15 +1131,15 @@ expect:
     object-keys "^1.0.9"
     tmatch "^2.0.1"
 
-extend, extend@~3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
-
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
   dependencies:
     is-extendable "^0.1.0"
+
+extend@^3.0.0, extend@~3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
 extglob@^0.3.1:
   version "0.3.2"
@@ -1842,6 +1842,14 @@ lru-cache@2:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
 
+metalsmith-engine-jstransformer:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/metalsmith-engine-jstransformer/-/metalsmith-engine-jstransformer-0.1.1.tgz#0303ec7cb2b9514aed42afda70dc80b47a8e613c"
+  dependencies:
+    extend "^3.0.0"
+    inputformat-to-jstransformer "^1.1.8"
+    jstransformer "^1.0.0"
+
 metalsmith@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/metalsmith/-/metalsmith-2.3.0.tgz#833afbb5a2a6385e2d9ae3d935e39e33eaea5231"
@@ -2454,10 +2462,6 @@ stat-mode@^0.2.0:
 string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
-
-string-includes@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/string-includes/-/string-includes-1.0.1.tgz#a7df7d3b464bb8e68ed3314c3493ee25115d2234"
 
 string-width@^1.0.1:
   version "1.0.2"

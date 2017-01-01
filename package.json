@@ -10,7 +10,7 @@
     "prepublish": "babel lib -d dist",
     "test:eslint": "eslint '{lib,test}/**/*.js'",
     "test:mocha": "mocha --compilers js:babel-core/register --reporter spec",
-    "test": "npm run test:mocha && npm run test:eslint"
+    "test": "npm run test:mocha"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
@@ -28,7 +28,7 @@
     "rimraf": "^2.5.3"
   },
   "dependencies": {
-    "metalsmith-engine-jstransformer": "github:superwolff/metalsmith-engine-jstransformer#development",
+    "metalsmith-engine-jstransformer": "^0.1.1",
     "multimatch": "^2.1.0"
   }
 }
