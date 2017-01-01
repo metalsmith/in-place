@@ -7,10 +7,8 @@
 
 > A metalsmith plugin for in-place templating
 
-This plugin allows you to render templates. The default templating engine is 
-[jstransformer](https://github.com/jstransformers/jstransformer), but you can use any engine you 
-like. For support questions please use [stack overflow][stackoverflow-url] or our 
-[slack channel][slack-url].
+This plugin allows you to render templates. For support questions please use 
+[stack overflow][stackoverflow-url] or our [slack channel][slack-url].
 
 ## Installation
 
@@ -24,15 +22,16 @@ You can pass options to `metalsmith-in-place` with the
 [Javascript API](https://github.com/segmentio/metalsmith#api) or 
 [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
 
-* `engine`: the engine that will be used for processing files (optional, default: jstransformer)
+* `engine`: the engine that will be used for processing files (optional, default: 
+[jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer))
 * `engineOptions`: an object with options that will be passed to the engine (optional, default: `{}`)
 * `pattern`: only files that match this pattern will be processed (optional, default: `**`)
 
 ### engine
 
 The engine that will be used to process files. The default engine is
-[jstransformer](https://github.com/jstransformers/jstransformer), but any compatible engine can be
-used. To select a different engine you must use metalsmith's
+[jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer), but any compatible 
+engine can be used. To select a different engine you must use metalsmith's
 [Javascript API](https://github.com/segmentio/metalsmith#api) like so:
 
 ```javascript
@@ -44,6 +43,9 @@ metalsmith(__dirname)
   .use(inPlace({
     engine: Consolidate
   }))
+  .build(function(err){
+    if (err) throw err;
+  });
 ```
 
 This would use consolidate to process files. See each engine's documentation for options and
@@ -63,9 +65,12 @@ metalsmith(__dirname)
       "cache": false
     }
   }))
+  .build(function(err){
+    if (err) throw err;
+  });
 ```
 
-Would pass the `engineOptions` object `{ "cache": false }` to the selected engine.
+Would pass `{ "cache": false }` to the selected engine.
 
 ### pattern
 
@@ -79,6 +84,9 @@ metalsmith(__dirname)
   .use(inPlace({
     pattern: "**/*.hbs"
   }))
+  .build(function(err){
+    if (err) throw err;
+  });
 ```
 
 Would only process files that have the `.hbs` extension.
