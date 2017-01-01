@@ -1,3 +1,11 @@
+2.0.1 - January 1, 2017
+-----------------------
+* correct publishing mistake
+
+2.0.0 - January 1, 2017
+-----------------------
+* abstract templating, allows user to choose which engine to use for rendering (breaking change)
+
 2.0.0-beta.1 - September 11, 2016
 -------------------------------
 * switch to jstransformers for rendering (breaking change)
