@@ -1,24 +1,13 @@
 {
   "extends": "airbnb-base",
-  "rules": {
-    "comma-dangle": "off",
-    "consistent-return": "off",
-    "func-names": "off",
-    "import/no-extraneous-dependencies": "off",
-    "no-param-reassign": "off",
-    "no-underscore-dangle": "off",
-    "no-use-before-define": "off",
-    "strict": "off",
-    "vars-on-top": "off"
-  },
   "env": {
     "node": true,
     "mocha": true
   },
-  settings: {
-    "import/extensions": [
-      '.js',
-      '.es6'
-    ]
+  "settings": {
+    "import/extensions": [".js"]
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0
   }
 }

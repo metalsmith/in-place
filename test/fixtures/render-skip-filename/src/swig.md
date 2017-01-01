@@ -1,6 +1,0 @@
----
-title: index
----
-# Heading
-
-{{ title }}

@@ -7,11 +7,10 @@
 
 > A metalsmith plugin for in-place templating
 
-**This documentation is for the 2.0.0-beta.1. This version will not be installed automatically and has been released for testing purposes, check [here](https://github.com/superwolff/metalsmith-in-place/blob/7cb06e54142b8843f35178ceb5560946ae356049/Readme.md) for the readme for the latest stable version. If you're using the beta please let us know about any bugs!**
-
-This plugin allows you to render templates with [jstransformer](https://github.com/jstransformers/jstransformer). Files will be transformed based on their extension, last extension first. Transformations are applied until there are no more applicable jstransformers.
-
-Though its main purpose is rendering templates, any jstransformer compatible plugin can be used. For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url].
+This plugin allows you to render templates. The default templating engine is 
+[jstransformer](https://github.com/jstransformers/jstransformer), but you can use any engine you 
+like. For support questions please use [stack overflow][stackoverflow-url] or our 
+[slack channel][slack-url].
 
 ## Installation
 
@@ -19,81 +18,70 @@ Though its main purpose is rendering templates, any jstransformer compatible plu
 $ npm install metalsmith-in-place
 ```
 
-Make sure that the jstransformers that you want to use are installed as well.
-
-## Example
-
-Install [jstransformer-handlebars](https://github.com/jstransformers/jstransformer-handlebars) to enable the handlebars transformation:
-
-```
-$ npm install jstransformer-handlebars
-```
-
-Configuration in `metalsmith.json`:
-
-```json
-{
-  "plugins": {
-    "metalsmith-in-place": true
-  }
-}
-```
-
-Source file `src/index.html.handlebars`:
-
-```html
----
-title: The title
----
-<p>{{title}}</p>
-```
-
-Results in `build/index.html`:
-
-```html
-<p>The title</p>
-```
-
 ## Options
 
-You can pass options to `metalsmith-in-place` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+You can pass options to `metalsmith-in-place` with the
+[Javascript API](https://github.com/segmentio/metalsmith#api) or 
+[CLI](https://github.com/segmentio/metalsmith#cli). The options are:
 
-* pattern: only files that match this pattern will be processed (optional, default: `**`)
-* options: an object with options that will be passed to the jstransformer (optional)
+* `engine`: the engine that will be used for processing files (optional, default: jstransformer)
+* `engineOptions`: an object with options that will be passed to the engine (optional, default: `{}`)
+* `pattern`: only files that match this pattern will be processed (optional, default: `**`)
+
+### engine
+
+The engine that will be used to process files. The default engine is
+[jstransformer](https://github.com/jstransformers/jstransformer), but any compatible engine can be
+used. To select a different engine you must use metalsmith's
+[Javascript API](https://github.com/segmentio/metalsmith#api) like so:
+
+```javascript
+var metalsmith = require('metalsmith')
+var inPlace = require('metalsmith-in-place')
+var Consolidate = require('metalsmith-engine-consolidate')
+
+metalsmith(__dirname)
+  .use(inPlace({
+    engine: Consolidate
+  }))
+```
+
+This would use consolidate to process files. See each engine's documentation for options and
+implementation details.
+
+### engineOptions
+
+These options will be passed on to the selected engine. So this configuration:
+
+```Javascript
+var metalsmith = require('metalsmith')
+var inPlace = require('metalsmith-in-place')
+
+metalsmith(__dirname)
+  .use(inPlace({
+    engineOptions: {
+      "cache": false
+    }
+  }))
+```
+
+Would pass the `engineOptions` object `{ "cache": false }` to the selected engine.
 
 ### pattern
 
-Only files that match this pattern will be processed. So this `metalsmith.json`:
+Only files that match this pattern will be processed. So this configuration:
 
-```json
-{
-  "plugins": {
-    "metalsmith-in-place": {
-      "pattern": "**/*.handlebars"
-    }
-  }
-}
+```javascript
+var metalsmith = require('metalsmith')
+var inPlace = require('metalsmith-in-place')
+
+metalsmith(__dirname)
+  .use(inPlace({
+    pattern: "**/*.hbs"
+  }))
 ```
 
-Would only process files that have the `.handlebars` extension.
-
-### options
-
-These options will be passed on to jstransformer. How these options will be used differs from transformer to transformer. For example, the [jstransformer-handlebars](https://github.com/jstransformers/jstransformer-handlebars) allows you to define partials in the options like so:
-
-```json
-{
-  "plugins": {
-    "metalsmith-in-place": {
-      "options": {
-        "title": "The title"
-      }
-    }
-  }
-}
-```
-
-Which would allow you to use the partial as `{{> title}}`. See the documentation for the transformer that you want to use for more details.
+Would only process files that have the `.hbs` extension.
 
 ## Credits
 
