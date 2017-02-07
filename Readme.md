@@ -12,22 +12,28 @@ This plugin allows you to render templates. For support questions please use
 
 ## Installation
 
-```
-$ npm install metalsmith-in-place
-```
+1. Install metalsmith-in-place:
+  ```
+  $ npm install metalsmith-in-place
+  ```
+2. If you're using [jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer), the default rendering engine, you'll also need to install `jstransformer-*` plugins to do whatever transformations you need. For example, to render handlebars templates, you'd need to install `metalsmith-in-place` *and* [`jstransformer-handlebars`](https://github.com/jstransformers/jstransformer-handlebars).
 
-## Options
+## Usage
 
-You can pass options to `metalsmith-in-place` with the
+You can use `metalsmith-in-place` with the with Metalsmith's
 [Javascript API](https://github.com/segmentio/metalsmith#api) or 
-[CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+[CLI](https://github.com/segmentio/metalsmith#cli).
+
+**Note:** When using `jstransformer` as the rendering engine, you'll also need to rename your files, since `jstransformer` plugins use file extensions to mark files for transformation. So, to process a file called `index.html` using `jstransformer-markdown` and then `jstransformer-handlebars`, you'd name it `index.html.handlebars.markdown`.
+
+### Options
 
 * `engine`: the engine that will be used for processing files (optional, default: 
 [jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer))
 * `engineOptions`: an object with options that will be passed to the engine (optional, default: `{}`)
 * `pattern`: only files that match this pattern will be processed (optional, default: `**`)
 
-### engine
+#### `engine`
 
 The engine that will be used to process files. The default engine is
 [jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer), but any compatible 
@@ -51,7 +57,7 @@ metalsmith(__dirname)
 This would use consolidate to process files. See each engine's documentation for options and
 implementation details.
 
-### engineOptions
+#### `engineOptions`
 
 These options will be passed on to the selected engine. So this configuration:
 
@@ -72,9 +78,11 @@ metalsmith(__dirname)
 
 Would pass `{ "cache": false }` to the selected engine.
 
-### pattern
+If your engine is the default [jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer), the options you pass to `engineOptions` will be available to all jstransformer plugins.
 
-Only files that match this pattern will be processed. So this configuration:
+#### `pattern`
+
+Exclude files that don't match the given pattern. So this configuration:
 
 ```javascript
 var metalsmith = require('metalsmith')
@@ -82,14 +90,16 @@ var inPlace = require('metalsmith-in-place')
 
 metalsmith(__dirname)
   .use(inPlace({
-    pattern: "**/*.hbs"
+    pattern: "blog/**/*"
   }))
   .build(function(err){
     if (err) throw err;
   });
 ```
 
-Would only process files that have the `.hbs` extension.
+Would only process files within the `blog` folder.
+
+**Note:** When using `jstransformer` as the rendering engine, files are selected for transformation based on their extensions. The pattern option can be used to filter the selection down, but files without the proper extensions won't be processed by `jstransformer` plugins.
 
 ## Credits
 
