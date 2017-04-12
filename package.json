@@ -8,9 +8,8 @@
   "version": "2.0.1",
   "scripts": {
     "prepublish": "babel lib -d dist",
-    "test:eslint": "eslint '{lib,test}/**/*.js'",
-    "test:mocha": "mocha --compilers js:babel-core/register --reporter spec",
-    "test": "npm run test:mocha"
+    "lint": "eslint '{lib,test}/**/*.js'",
+    "test": "mocha --compilers js:babel-core/register --reporter spec"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
