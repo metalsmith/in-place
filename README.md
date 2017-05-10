@@ -3,7 +3,6 @@
 [![npm version][version-badge]][version-url]
 [![build status][build-badge]][build-url]
 [![downloads][downloads-badge]][downloads-url]
-[![slack chat][slack-badge]][slack-url]
 
 > A metalsmith plugin for in-place templating
 
