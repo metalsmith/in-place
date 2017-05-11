@@ -1,5 +1,7 @@
 # metalsmith-in-place
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/superwolff/metalsmith-in-place.svg)](https://greenkeeper.io/)
+
 [![npm version][version-badge]][version-url]
 [![build status][build-badge]][build-url]
 [![downloads][downloads-badge]][downloads-url]
