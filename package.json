@@ -11,6 +11,13 @@
     "lint": "eslint '{lib,test}/**/*.js'",
     "test": "jest"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "/test/"
+    ]
+  },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
     "babel-cli": "^6.16.0",
