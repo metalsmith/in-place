@@ -1,13 +1,11 @@
 {
   "extends": "airbnb-base",
   "env": {
-    "node": true,
-    "mocha": true
-  },
-  "settings": {
-    "import/extensions": [".js"]
+    "node": true
   },
   "rules": {
-    "import/no-extraneous-dependencies": 0
+    "semi": 0,
+    "arrow-parens": 0,
+    "comma-dangle": 0
   }
 }

@@ -1,16 +1,16 @@
 // Mock engine for testing, always sets the contents of files to 'processed'
 class Engine {
   constructor(files) {
-    this.files = files;
+    this.files = files
   }
 
   render(filename) {
-    return new Promise((resolve) => {
-      this.files[filename].contents = new Buffer('processed');
+    return new Promise(resolve => {
+      this.files[filename].contents = new Buffer('processed')
 
-      resolve();
-    });
+      resolve()
+    })
   }
 }
 
-module.exports = Engine;
+module.exports = Engine
