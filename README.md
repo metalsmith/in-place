@@ -2,6 +2,7 @@
 
 [![npm version][version-badge]][version-url]
 [![build status][build-badge]][build-url]
+[![coverage status][coverage-badge]][coverage-url]
 [![greenkeeper][greenkeeper-badge]][greenkeeper-url]
 [![downloads][downloads-badge]][downloads-url]
 
@@ -121,3 +122,5 @@ MIT
 [stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
 [greenkeeper-badge]: https://badges.greenkeeper.io/superwolff/metalsmith-in-place.svg
 [greenkeeper-url]: https://greenkeeper.io/
+[coverage-badge]: https://coveralls.io/repos/github/superwolff/metalsmith-in-place/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/superwolff/metalsmith-in-place?branch=master

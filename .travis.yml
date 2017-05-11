@@ -7,5 +7,5 @@ node_js:
 notifications:
   email: false
 script:
-  - npm test
+  - npm run test:coverage
   - npm run lint

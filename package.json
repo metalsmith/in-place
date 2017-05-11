@@ -9,7 +9,8 @@
   "scripts": {
     "prepublish": "babel lib -d dist",
     "lint": "eslint '{lib,test}/**/*.js'",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -28,6 +29,7 @@
     "babel-cli": "^6.16.0",
     "babel-core": "^6.18.2",
     "babel-preset-es2015": "^6.16.0",
+    "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
     "eslint-plugin-import": "^2.2.0",

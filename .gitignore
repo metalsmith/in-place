@@ -8,3 +8,6 @@ test/fixtures/*/build
 
 # Babel build results
 dist
+
+# Coverage reports
+/coverage
