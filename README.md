@@ -1,9 +1,8 @@
 # metalsmith-in-place
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/superwolff/metalsmith-in-place.svg)](https://greenkeeper.io/)
-
 [![npm version][version-badge]][version-url]
 [![build status][build-badge]][build-url]
+[![greenkeeper][greenkeeper-badge]][greenkeeper-url]
 [![downloads][downloads-badge]][downloads-url]
 
 > A metalsmith plugin for in-place templating
@@ -120,3 +119,5 @@ MIT
 [version-badge]: https://img.shields.io/npm/v/metalsmith-in-place.svg
 [version-url]: https://www.npmjs.com/package/metalsmith-in-place
 [stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
+[greenkeeper-badge]: https://badges.greenkeeper.io/superwolff/metalsmith-in-place.svg
+[greenkeeper-url]: https://greenkeeper.io/
