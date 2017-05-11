@@ -8,7 +8,10 @@
   "version": "2.0.1",
   "scripts": {
     "prepublish": "babel lib -d dist",
-    "lint": "eslint '{lib,test}/**/*.js'",
+    "precommit": "lint-staged",
+    "lint:js": "eslint '{lib,test}/**/*.js'",
+    "lint:prettier": "prettier --list-different --print-width 100 --tab-width 2 --no-semi --single-quote '{lib,test}/**/*.js'",
+    "lint:whitespace": "lintspaces -e ./.editorconfig -i 'js-comments' '{lib,test}/**/*.js'",
     "test": "jest",
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
@@ -33,9 +36,13 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
     "eslint-plugin-import": "^2.2.0",
+    "husky": "^0.13.3",
     "jest": "^20.0.0",
     "jstransformer-handlebars": "^1.0.0",
+    "lint-staged": "^3.4.1",
+    "lintspaces-cli": "^0.6.0",
     "metalsmith": "^2.1.0",
+    "prettier": "^1.3.1",
     "rimraf": "^2.5.3"
   },
   "dependencies": {

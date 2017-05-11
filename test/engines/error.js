@@ -2,8 +2,8 @@
 class Engine {
   // eslint-disable-next-line class-methods-use-this
   render() {
-    return Promise.reject(new Error('Default error from ErrorEngine'));
+    return Promise.reject(new Error('Default error from ErrorEngine'))
   }
 }
 
-module.exports = Engine;
+module.exports = Engine
