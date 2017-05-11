@@ -19,12 +19,9 @@
     "eslint": "^3.0.1",
     "eslint-config-airbnb-base": "^4.0.0",
     "eslint-plugin-import": "^1.10.3",
-    "expect": "^1.20.2",
-    "harmonize": "^1.4.4",
     "jest": "^20.0.0",
     "jstransformer-handlebars": "^1.0.0",
     "metalsmith": "^2.1.0",
-    "mocha": "^2.5.3",
     "rimraf": "^2.5.3"
   },
   "dependencies": {
