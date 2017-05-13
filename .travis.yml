@@ -8,9 +8,13 @@ node_js:
   - "6"
   - "7"
 script:
-  - npm run test:coverage
+  - npm test
 jobs:
   include:
+    - stage: coverage
+      node_js: "7"
+      script:
+        - npm run test:coverage
     - stage: lint
       node_js: "7"
       script:
