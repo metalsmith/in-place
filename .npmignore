@@ -4,6 +4,7 @@
 .eslintrc
 .gitattributes
 .gitignore
+.lintstagedrc
 .travis.yml
 
 # ES6 code
