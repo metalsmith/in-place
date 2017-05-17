@@ -5,6 +5,7 @@
 [![coverage status][coverage-badge]][coverage-url]
 [![greenkeeper][greenkeeper-badge]][greenkeeper-url]
 [![downloads][downloads-badge]][downloads-url]
+[![node security status][nsp-badge]][nsp-url]
 
 > A metalsmith plugin for in-place templating
 
@@ -124,3 +125,5 @@ MIT
 [greenkeeper-url]: https://greenkeeper.io/
 [coverage-badge]: https://coveralls.io/repos/github/superwolff/metalsmith-in-place/badge.svg?branch=master
 [coverage-url]: https://coveralls.io/github/superwolff/metalsmith-in-place?branch=master
+[nsp-badge]: https://nodesecurity.io/orgs/ismay/projects/f9a90e69-de31-4850-9eaf-6ed058171bbd/badge
+[nsp-url]: https://nodesecurity.io/orgs/ismay/projects/f9a90e69-de31-4850-9eaf-6ed058171bbd
