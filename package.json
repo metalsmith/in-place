@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/superwolff/metalsmith-in-place.git",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "scripts": {
     "prepublish": "babel lib -d dist",
     "precommit": "lint-staged",

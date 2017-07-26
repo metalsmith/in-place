@@ -1,3 +1,8 @@
+3.0.0 - July 26, 2017
+---------------------
+* dropped support for iojs and node 0.12
+* allow arrays for pattern option as well
+
 2.0.1 - January 1, 2017
 -----------------------
 * correct publishing mistake
