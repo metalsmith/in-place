@@ -33,7 +33,7 @@ You can use `metalsmith-in-place` with the with Metalsmith's
 * `engine`: the engine that will be used for processing files (optional, default: 
 [jstransformer](https://github.com/superwolff/metalsmith-engine-jstransformer))
 * `engineOptions`: an object with options that will be passed to the engine (optional, default: `{}`)
-* `pattern`: only files that match this pattern will be processed (optional, default: `**`)
+* `pattern`: only files that match this pattern will be processed, can be a string or array of strings (optional, default: `**`)
 
 #### `engine`
 
@@ -99,7 +99,7 @@ metalsmith(__dirname)
   });
 ```
 
-Would only process files within the `blog` folder.
+Would only process files within the `blog` folder. See [multimatch](https://github.com/sindresorhus/multimatch) for further details.
 
 **Note:** When using `jstransformer` as the rendering engine, files are selected for transformation based on their extensions. The pattern option can be used to filter the selection down, but files without the proper extensions won't be processed by `jstransformer` plugins.
 
