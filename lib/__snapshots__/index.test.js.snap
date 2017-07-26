@@ -8,6 +8,6 @@ exports[`metalsmith-in-place should throw an error for an engine without a rende
 
 exports[`metalsmith-in-place should throw an error for an invalid engine 1`] = `"invalid engine, the engine should be a constructor."`;
 
-exports[`metalsmith-in-place should throw an error for an invalid pattern 1`] = `"invalid pattern, the pattern option should be a string."`;
+exports[`metalsmith-in-place should throw an error for an invalid pattern 1`] = `"invalid pattern, the pattern option should be a string or array."`;
 
 exports[`metalsmith-in-place should throw an error for invalid options 1`] = `"invalid options, this plugin expects a single options object."`;
