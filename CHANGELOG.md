@@ -1,3 +1,7 @@
+3.0.1 - August 2, 2017
+----------------------
+* update metalsmith-engine-jstransformer to 0.1.2
+
 3.0.0 - July 26, 2017
 ---------------------
 * dropped support for iojs and node 0.12
