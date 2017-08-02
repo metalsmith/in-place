@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/superwolff/metalsmith-in-place.git",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "prepublish": "babel lib -d dist",
     "precommit": "lint-staged",
@@ -47,7 +47,7 @@
     "rimraf": "^2.5.3"
   },
   "dependencies": {
-    "metalsmith-engine-jstransformer": "^0.1.1",
+    "metalsmith-engine-jstransformer": "^0.1.2",
     "multimatch": "^2.1.0"
   }
 }
