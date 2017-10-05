@@ -184,7 +184,7 @@ This would use the custom engine to process files.
 
 MIT
 
-[build-badge]: https://travis-ci.org/superwolff/metalsmith-in-place.svg
+[build-badge]: https://travis-ci.org/superwolff/metalsmith-in-place.svg?branch=master
 [build-url]: https://travis-ci.org/superwolff/metalsmith-in-place
 [downloads-badge]: https://img.shields.io/npm/dm/metalsmith-in-place.svg
 [downloads-url]: https://www.npmjs.com/package/metalsmith-in-place
