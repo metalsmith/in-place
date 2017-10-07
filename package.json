@@ -47,7 +47,7 @@
     "rimraf": "^2.5.3"
   },
   "dependencies": {
-    "metalsmith-engine-jstransformer": "^0.1.2",
+    "metalsmith-engine-jstransformer": "^1.0.0-alpha.1",
     "multimatch": "^2.1.0"
   }
 }
