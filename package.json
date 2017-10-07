@@ -7,7 +7,7 @@
   "repository": "git://github.com/ismay/metalsmith-in-place.git",
   "version": "4.0.0-alpha.2",
   "scripts": {
-    "prepublish": "babel lib -d dist",
+    "prepublishOnly": "babel lib -d dist --ignore '**/*.test.js'",
     "precommit": "lint-staged",
     "lint:js": "eslint '{lib,test}/**/*.js'",
     "lint:prettier": "prettier --list-different --print-width 100 --tab-width 2 --no-semi --single-quote '{lib,test}/**/*.js'",
@@ -16,10 +16,8 @@
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/",
-      "/test/"
+    "collectCoverageFrom": [
+      "lib/*.js"
     ]
   },
   "greenkeeper": {
