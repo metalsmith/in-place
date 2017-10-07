@@ -5,6 +5,11 @@ class Engine {
     this.options = options
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  validate() {
+    return true
+  }
+
   render(filename) {
     return new Promise(resolve => {
       this.files[filename].contents = Buffer.from(JSON.stringify(this.options))
