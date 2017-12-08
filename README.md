@@ -5,7 +5,6 @@
 [![coverage status][coverage-badge]][coverage-url]
 [![greenkeeper][greenkeeper-badge]][greenkeeper-url]
 [![downloads][downloads-badge]][downloads-url]
-[![node security status][nsp-badge]][nsp-url]
 
 > A metalsmith plugin for rendering templates to html
 
@@ -184,18 +183,15 @@ This would use the custom engine to process files.
 
 MIT
 
-[build-badge]: https://travis-ci.org/superwolff/metalsmith-in-place.svg?branch=master
-[build-url]: https://travis-ci.org/superwolff/metalsmith-in-place
+[build-badge]: https://travis-ci.org/ismay/metalsmith-in-place.svg?branch=master
+[build-url]: https://travis-ci.org/ismay/metalsmith-in-place
 [downloads-badge]: https://img.shields.io/npm/dm/metalsmith-in-place.svg
 [downloads-url]: https://www.npmjs.com/package/metalsmith-in-place
-[slack-badge]: https://img.shields.io/badge/Slack-Join%20Chat%20→-blue.svg
-[slack-url]: http://metalsmith-slack.herokuapp.com/
 [version-badge]: https://img.shields.io/npm/v/metalsmith-in-place.svg
 [version-url]: https://www.npmjs.com/package/metalsmith-in-place
-[stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
-[greenkeeper-badge]: https://badges.greenkeeper.io/superwolff/metalsmith-in-place.svg
+[greenkeeper-badge]: https://badges.greenkeeper.io/ismay/metalsmith-in-place.svg
 [greenkeeper-url]: https://greenkeeper.io/
-[coverage-badge]: https://coveralls.io/repos/github/superwolff/metalsmith-in-place/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/superwolff/metalsmith-in-place?branch=master
-[nsp-badge]: https://nodesecurity.io/orgs/ismay/projects/f9a90e69-de31-4850-9eaf-6ed058171bbd/badge
-[nsp-url]: https://nodesecurity.io/orgs/ismay/projects/f9a90e69-de31-4850-9eaf-6ed058171bbd
+[coverage-badge]: https://coveralls.io/repos/github/ismay/metalsmith-in-place/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/ismay/metalsmith-in-place?branch=master
+[slack-url]: http://metalsmith-slack.herokuapp.com/
+[stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith
