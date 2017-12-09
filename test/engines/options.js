@@ -7,7 +7,7 @@ class Engine {
 
   render(filename) {
     return new Promise(resolve => {
-      this.files[filename].contents = new Buffer(JSON.stringify(this.options))
+      this.files[filename].contents = Buffer.from(JSON.stringify(this.options))
 
       resolve()
     })

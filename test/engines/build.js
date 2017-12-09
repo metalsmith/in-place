@@ -6,7 +6,7 @@ class Engine {
 
   render(filename) {
     return new Promise(resolve => {
-      this.files[filename].contents = new Buffer('processed')
+      this.files[filename].contents = Buffer.from('processed')
 
       resolve()
     })
