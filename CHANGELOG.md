@@ -1,4 +1,15 @@
 ### 4.0.0 - January 4, 2018
+
+So this library went through a bit of churny phase, my apologies for that. It was caused by a couple
+of factors; moving the library to a new home, a new rendering engine and me trying to abstract said
+rendering engine for reuse in metalsmith-layouts.
+
+However, the end result is now a stable plugin, that's easy to use and easy to maintain.
+Jstransformers are way simpler to debug, and so far I haven't even encountered any bugs. We're not
+abstracting the rendering engine because it's just not worth it, and confusing apis have been
+removed. All in all I hope that you'll enjoy this release and feel free to let me know if you
+encounter anything!
+
 * breaking: dropped node 4 support
 * breaking: the filename property is no longer set automatically, use https://github.com/MoOx/metalsmith-filenames
 * removed metalsmith-engine-jstransformer for ease of maintenance
