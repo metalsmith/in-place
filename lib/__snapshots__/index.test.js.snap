@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`metalsmith-in-place should catch errors from the engine 1`] = `"Default error from ErrorEngine"`;
-
 exports[`metalsmith-in-place should return an error for an invalid pattern 1`] = `"invalid pattern, the pattern option should be a string or array."`;
 
 exports[`metalsmith-in-place should return an error when there are no valid files to process 1`] = `"no files to process, check whether you have a jstransformer installed."`;

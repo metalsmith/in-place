@@ -18,10 +18,6 @@
   "jest": {
     "collectCoverageFrom": [
       "lib/*.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/dist/",
-      "<rootDir>/node_modules/"
     ]
   },
   "greenkeeper": {
@@ -38,10 +34,12 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.13.0",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "jstransformer-handlebars": "^1.0.0",
+    "jstransformer-marked": "^1.0.2",
     "lint-staged": "^6.0.0",
     "lintspaces-cli": "^0.6.0",
     "metalsmith": "^2.1.0",
