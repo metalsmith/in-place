@@ -18,6 +18,10 @@
   "jest": {
     "collectCoverageFrom": [
       "lib/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist/",
+      "<rootDir>/node_modules/"
     ]
   },
   "greenkeeper": {
@@ -45,6 +49,9 @@
     "rimraf": "^2.5.3"
   },
   "dependencies": {
+    "inputformat-to-jstransformer": "^1.2.1",
+    "is-utf8": "^0.2.1",
+    "jstransformer": "^1.0.0",
     "metalsmith-engine-jstransformer": "^1.0.0-alpha.2",
     "multimatch": "^2.1.0"
   }
