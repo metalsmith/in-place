@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/ismay/metalsmith-in-place.git",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0",
   "scripts": {
     "prepublishOnly": "babel lib -d dist --ignore '**/*.test.js'",
     "precommit": "lint-staged",
