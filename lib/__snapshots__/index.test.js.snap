@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`metalsmith-in-place should catch errors from the engine 1`] = `"Default error from ErrorEngine"`;
+exports[`metalsmith-in-place should return an error for an invalid pattern 1`] = `"invalid pattern, the pattern option should be a string or array."`;
 
-exports[`metalsmith-in-place should throw an error for an engine with an invalid render property 1`] = `"invalid engine, the render property should be a function."`;
-
-exports[`metalsmith-in-place should throw an error for an engine without a render method 1`] = `"invalid engine, the engine instance should have a render method."`;
-
-exports[`metalsmith-in-place should throw an error for an invalid engine 1`] = `"invalid engine, the engine should be a constructor."`;
-
-exports[`metalsmith-in-place should throw an error for an invalid pattern 1`] = `"invalid pattern, the pattern option should be a string or array."`;
-
-exports[`metalsmith-in-place should throw an error for invalid options 1`] = `"invalid options, this plugin expects a single options object."`;
+exports[`metalsmith-in-place should return an error when there are no valid files to process 1`] = `"no files to process, check whether you have a jstransformer installed."`;

@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/ismay/metalsmith-in-place.git",
-  "version": "3.0.1",
+  "version": "4.0.0-alpha.2",
   "scripts": {
-    "prepublish": "babel lib -d dist",
+    "prepublishOnly": "babel lib -d dist --ignore '**/*.test.js'",
     "precommit": "lint-staged",
     "lint:js": "eslint '{lib,test}/**/*.js'",
     "lint:prettier": "prettier --list-different --print-width 100 --tab-width 2 --no-semi --single-quote '{lib,test}/**/*.js'",
@@ -16,10 +16,8 @@
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/",
-      "/test/"
+    "collectCoverageFrom": [
+      "lib/*.js"
     ]
   },
   "greenkeeper": {
@@ -29,25 +27,29 @@
     ]
   },
   "devDependencies": {
-    "assert-dir-equal": "^1.0.1",
-    "babel-cli": "^6.16.0",
-    "babel-core": "^6.18.2",
+    "assert-dir-equal": "^1.1.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-preset-env": "^1.4.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.13.0",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
     "husky": "^0.14.3",
-    "jest": "^21.2.1",
+    "jest": "^22.0.4",
     "jstransformer-handlebars": "^1.0.0",
+    "jstransformer-marked": "^1.0.2",
     "lint-staged": "^6.0.0",
     "lintspaces-cli": "^0.6.0",
     "metalsmith": "^2.1.0",
-    "prettier": "^1.3.1",
+    "prettier": "^1.9.2",
     "rimraf": "^2.5.3"
   },
   "dependencies": {
-    "metalsmith-engine-jstransformer": "^0.1.2",
+    "inputformat-to-jstransformer": "^1.2.1",
+    "is-utf8": "^0.2.1",
+    "jstransformer": "^1.0.0",
     "multimatch": "^2.1.0"
   }
 }
