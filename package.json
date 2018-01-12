@@ -2,16 +2,14 @@
   "author": "ismay",
   "description": "A metalsmith plugin for in-place templating.",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/ismay/metalsmith-in-place.git",
   "version": "4.0.0",
   "scripts": {
-    "prepublishOnly": "babel lib -d dist --ignore '**/*.test.js'",
     "precommit": "lint-staged",
-    "lint:js": "eslint '{lib,test}/**/*.js'",
-    "lint:prettier": "prettier --list-different --print-width 100 --tab-width 2 --no-semi --single-quote '{lib,test}/**/*.js'",
-    "lint:whitespace": "lintspaces -e ./.editorconfig -i 'js-comments' '{lib,test}/**/*.js'",
+    "lint:js": "eslint '**/*.js'",
+    "lint:prettier": "prettier --list-different '**/*.js'",
     "test": "jest",
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
@@ -28,9 +26,6 @@
   },
   "devDependencies": {
     "assert-dir-equal": "^1.1.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.4.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.13.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -41,7 +36,6 @@
     "jstransformer-handlebars": "^1.0.0",
     "jstransformer-marked": "^1.0.2",
     "lint-staged": "^6.0.0",
-    "lintspaces-cli": "^0.6.0",
     "metalsmith": "^2.1.0",
     "prettier": "^1.9.2",
     "rimraf": "^2.5.3"
