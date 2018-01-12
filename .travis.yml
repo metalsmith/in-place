@@ -16,6 +16,5 @@ jobs:
     - stage: lint
       node_js: "8"
       script:
-        - npm run lint:whitespace
         - npm run lint:prettier
         - npm run lint:js
