@@ -9,9 +9,7 @@
 > A metalsmith plugin for rendering templates to html
 
 This plugin allows you to render various templating languages to html. It uses file extensions to
-infer which templating engine to use. So files ending in `.md` will be processed as markdown, `.hbs`
-as handlebars, etc. You can even chain transformations by appending multiple extensions, which will
-be processed right-to-left.
+infer which templating engine to use. So files ending in `.njk` will be processed as nunjucks, `.pug` as pug, etc. You can even chain transformations by appending multiple extensions, which will be processed right-to-left.
 
 For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [jstransformers](https://github.com/jstransformers) and your templating engine of choice.
 
@@ -94,10 +92,10 @@ handlebars you would install
 [this dictionary](https://github.com/jstransformers/inputformat-to-jstransformer/blob/master/dictionary.json)
 to see which extensions map to which jstransformer.
   
-In this case we'll use handlebars, so we'll install jstransformer-handlebars:
+In this case we'll use nunjucks, so we'll install `jstransformer-nunjucks`:
 
 ```bash
-$ npm install --save jstransformer-handlebars
+$ npm install --save jstransformer-nunjucks
 ```
 
 ### 3. Configure metalsmith
@@ -117,9 +115,9 @@ process:
 }
 ```
 
-`./src/index.hbs`
+`./src/index.njk`
 
-```handlebars
+```nunjucks
 ---
 title: This is a variable, defined in the file's frontmatter
 ---
