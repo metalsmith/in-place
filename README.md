@@ -13,12 +13,61 @@ infer which templating engine to use. So files ending in `.md` will be processed
 as handlebars, etc. You can even chain transformations by appending multiple extensions, which will
 be processed right-to-left.
 
-```
+For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [jstransformers](https://github.com/jstransformers) and your templating engine of choice.
+
+## Installation
+
+```bash
 $ npm install metalsmith-in-place
 ```
 
-For support questions please use [stack overflow][stackoverflow-url] or our
-[slack channel][slack-url].
+## Options
+
+You can pass options to `metalsmith-layouts` with the [Javascript API](https://github.com/segmentio/metalsmith#api) or [CLI](https://github.com/segmentio/metalsmith#cli). The options are:
+
+* [pattern](#pattern): optional. Only files that match this pattern will be processed. Accepts a string or an array of strings. The default is `**`.
+* [engineOptions](#engineoptions): optional. Use this to pass options to the jstransformer that's rendering your layouts. The default is `{}`.
+
+### `pattern`
+
+Only files that match this pattern will be processed. So this `metalsmith.json`:
+
+```json
+{
+  "source": "src",
+  "destination": "build",
+  "plugins": {
+    "metalsmith-in-place": {
+      "pattern": "blog/**/*"
+    }
+  }
+}
+```
+
+Would only process files within the `./src/blog` folder, because the pattern is
+relative to your source folder. See [multimatch](https://github.com/sindresorhus/multimatch)
+for further details.
+
+### `engineOptions`
+
+Use this to pass options to the jstransformer that's rendering your templates. So this
+`metalsmith.json`:
+
+```json
+{
+  "source": "src",
+  "destination": "build",
+  "plugins": {
+    "metalsmith-in-place": {
+      "engineOptions": {
+        "cache": false
+      }
+    }
+  }
+}
+```
+
+Would pass `{ "cache": false }` to each used jstransformer.
 
 ## Example
 
@@ -28,7 +77,7 @@ You can use `metalsmith-in-place` with metalsmith's
 
 ### 1. Install metalsmith and metalsmith-in-place:
 
-```
+```bash
 $ npm install --save metalsmith metalsmith-in-place
 ```
 
@@ -47,7 +96,7 @@ to see which extensions map to which jstransformer.
   
 In this case we'll use handlebars, so we'll install jstransformer-handlebars:
 
-```
+```bash
 $ npm install --save jstransformer-handlebars
 ```
 
@@ -58,7 +107,7 @@ process:
 
 `./metalsmith.json`
 
-```
+```json
 {
   "source": "src",
   "destination": "build",
@@ -82,7 +131,7 @@ title: This is a variable, defined in the file's frontmatter
 
 To build just run the metalsmith CLI:
 
-```
+```bash
 $ node_modules/.bin/metalsmith
 ```
 
@@ -90,60 +139,10 @@ Which will output the following file:
 
 `./build/index.html`
 
-```
+```html
 <h1>This is a variable, defined in the file's frontmatter</h1>
 <p>Some text here.</p>
 ```
-
-## Options
-
-* `engineOptions`: optional. Use this to pass options to the jstransformer  that's rendering your
-templates. The default is `{}`.
-
-* `pattern`: optional. By default this plugin tries to process all files. If you encounter problems
-use this option to filter. Only files that match this pattern will be processed. Accepts a string or
-an array of strings. The default is `**`.
-
-### `engineOptions`
-
-Use this to pass options to the jstransformer that's rendering your templates. So this
-`metalsmith.json`:
-
-```json
-{
-  "source": "src",
-  "destination": "build",
-  "plugins": {
-    "metalsmith-in-place": {
-      "engineOptions": {
-        "cache": false
-      }
-    }
-  }
-}
-```
-
-Would pass `{ "cache": false }` to each used jstransformer.
-
-### `pattern`
-
-Only files that match this pattern will be processed. So this `metalsmith.json`:
-
-```json
-{
-  "source": "src",
-  "destination": "build",
-  "plugins": {
-    "metalsmith-in-place": {
-      "pattern": "blog/**/*"
-    }
-  }
-}
-```
-
-Would only process files within the `./src/blog` folder, because the pattern is
-relative to your source folder. See [multimatch](https://github.com/sindresorhus/multimatch)
-for further details.
 
 ## Credits
 
