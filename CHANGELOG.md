@@ -1,3 +1,6 @@
+### 4.1.1 - January 25, 2018
+* documentation fix
+
 ### 4.1.0 - January 25, 2018
 * add a documentation link to the error messages
 * add debug for better debugging

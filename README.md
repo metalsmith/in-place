@@ -152,10 +152,9 @@ There are several things that might cause you to get a `no files to process` err
 
 * Your [pattern](#pattern) does not match any files
 * None of your files pass validation, validation fails for files that:
-  * Have no layout
-  * Have a layout without an extension
+  * Have no extension
   * Are not utf-8
-  * Have a layout that needs a jstransformer that hasn't been installed
+  * Need a jstransformer that hasn't been installed
 
 ## Credits
 
