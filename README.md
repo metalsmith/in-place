@@ -142,6 +142,21 @@ Which will output the following file:
 <p>Some text here.</p>
 ```
 
+## Errors and debugging
+
+If you're encountering problems you can use [debug](https://www.npmjs.com/package/debug) to enable verbose logging. To enable `debug` prefix your build command with `DEBUG=metalsmith-in-place`. So if you normally run `metalsmith` to build, use `DEBUG=metalsmith-in-place metalsmith` (on windows the syntax is [slightly different](https://www.npmjs.com/package/debug#windows-note)).
+
+### No files to process
+
+There are several things that might cause you to get a `no files to process` error:
+
+* Your [pattern](#pattern) does not match any files
+* None of your files pass validation, validation fails for files that:
+  * Have no layout
+  * Have a layout without an extension
+  * Are not utf-8
+  * Have a layout that needs a jstransformer that hasn't been installed
+
 ## Credits
 
 * [Ian Storm Taylor](https://github.com/ianstormtaylor) for creating [metalsmith-templates](https://github.com/segmentio/metalsmith-templates), on which this plugin was based
