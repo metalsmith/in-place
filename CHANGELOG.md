@@ -1,3 +1,7 @@
+### 4.1.0 - January 25, 2018
+* add a documentation link to the error messages
+* add debug for better debugging
+
 ### 4.0.0 - January 4, 2018
 So this library went through a bit of churny phase, my apologies for that. It was caused by a couple
 of factors; moving the library to a new home, a new rendering engine and me trying to abstract said
