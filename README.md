@@ -1,10 +1,8 @@
 # metalsmith-in-place
 
-[![npm version][version-badge]][version-url]
 [![build status][build-badge]][build-url]
 [![coverage status][coverage-badge]][coverage-url]
 [![greenkeeper][greenkeeper-badge]][greenkeeper-url]
-[![downloads][downloads-badge]][downloads-url]
 
 > A metalsmith plugin for rendering templates to html
 
@@ -167,10 +165,6 @@ There are several things that might cause you to get a `no files to process` err
 
 [build-badge]: https://travis-ci.org/ismay/metalsmith-in-place.svg?branch=master
 [build-url]: https://travis-ci.org/ismay/metalsmith-in-place
-[downloads-badge]: https://img.shields.io/npm/dm/metalsmith-in-place.svg
-[downloads-url]: https://www.npmjs.com/package/metalsmith-in-place
-[version-badge]: https://img.shields.io/npm/v/metalsmith-in-place.svg
-[version-url]: https://www.npmjs.com/package/metalsmith-in-place
 [greenkeeper-badge]: https://badges.greenkeeper.io/ismay/metalsmith-in-place.svg
 [greenkeeper-url]: https://greenkeeper.io/
 [coverage-badge]: https://coveralls.io/repos/github/ismay/metalsmith-in-place/badge.svg?branch=master
