@@ -23,6 +23,7 @@ You can pass options to `metalsmith-in-place` with the [Javascript API](https://
 
 * [pattern](#pattern): optional. Only files that match this pattern will be processed. Accepts a string or an array of strings. The default is `**`.
 * [engineOptions](#engineoptions): optional. Use this to pass options to the jstransformer that's rendering your files. The default is `{}`.
+* [suppressNoFilesError](#suppressNoFilesError): optional. An error won’t be thrown if no files are present for processing. 
 
 ### `pattern`
 
@@ -64,6 +65,12 @@ Use this to pass options to the jstransformer that's rendering your templates. S
 ```
 
 Would pass `{ "cache": false }` to each used jstransformer.
+
+### `suppressNoFilesError`
+
+`metalsmith-in-place` throws [an error](#no-files-to-process) in metalsmith if it can’t find any files to process. [More info](https://github.com/metalsmith/metalsmith-in-place/pull/151). If you’re doing any kind of incremental builds via something like `metalsmith-watch`, this is problematic as you’re likely only rebuilding files that have changed. This flag allows you to suppress that error.
+
+Note that if you have [debugging](#errors-and-debugging) turned on, you’ll see a message denoting when no files are present for processing.
 
 ## Example
 
