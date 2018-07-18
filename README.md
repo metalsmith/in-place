@@ -68,7 +68,7 @@ Would pass `{ "cache": false }` to each used jstransformer.
 
 ### `suppressNoFilesError`
 
-`metalsmith-in-place` throws [an error](#no-files-to-process) in metalsmith if it can’t find any files to process. [More info](https://github.com/metalsmith/metalsmith-in-place/pull/151). If you’re doing any kind of incremental builds via something like `metalsmith-watch`, this is problematic as you’re likely only rebuilding files that have changed. This flag allows you to suppress that error.
+`metalsmith-in-place` throws [an error](#no-files-to-process) in metalsmith if it can’t find any files to process. If you’re doing any kind of incremental builds via something like `metalsmith-watch`, this is problematic as you’re likely only rebuilding files that have changed. This flag allows you to suppress that error ([more info](https://github.com/metalsmith/metalsmith-in-place/pull/151)).
 
 Note that if you have [debugging](#errors-and-debugging) turned on, you’ll see a message denoting when no files are present for processing.
 
