@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "name": "metalsmith-in-place",
   "repository": "git://github.com/metalsmith/metalsmith-in-place.git",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "scripts": {
     "precommit": "lint-staged",
     "lint:js": "eslint '**/*.js'",
