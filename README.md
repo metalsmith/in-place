@@ -163,11 +163,11 @@ There are several things that might cause you to get a `no files to process` err
 
 [MIT](https://ismay.mit-license.org/)
 
-[build-badge]: https://travis-ci.org/ismay/metalsmith-in-place.svg?branch=master
-[build-url]: https://travis-ci.org/ismay/metalsmith-in-place
-[greenkeeper-badge]: https://badges.greenkeeper.io/ismay/metalsmith-in-place.svg
+[build-badge]: https://travis-ci.org/metalsmith/metalsmith-in-place.svg?branch=master
+[build-url]: https://travis-ci.org/metalsmith/metalsmith-in-place
+[greenkeeper-badge]: https://badges.greenkeeper.io/metalsmith/metalsmith-in-place.svg
 [greenkeeper-url]: https://greenkeeper.io/
-[coverage-badge]: https://coveralls.io/repos/github/ismay/metalsmith-in-place/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/ismay/metalsmith-in-place?branch=master
+[coverage-badge]: https://coveralls.io/repos/github/metalsmith/metalsmith-in-place/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/metalsmith/metalsmith-in-place?branch=master
 [slack-url]: http://metalsmith-slack.herokuapp.com/
 [stackoverflow-url]: http://stackoverflow.com/questions/tagged/metalsmith

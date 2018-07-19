@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "name": "metalsmith-in-place",
-  "repository": "git://github.com/ismay/metalsmith-in-place.git",
+  "repository": "git://github.com/metalsmith/metalsmith-in-place.git",
   "version": "4.1.1",
   "scripts": {
     "precommit": "lint-staged",
