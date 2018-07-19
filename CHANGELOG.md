@@ -1,3 +1,6 @@
+### 4.2.0 - July 19, 2018
+* add `suppressNoFilesError` feature 
+
 ### 4.1.1 - January 25, 2018
 * documentation fix
 
