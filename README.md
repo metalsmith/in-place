@@ -4,9 +4,9 @@
 [![coverage status][coverage-badge]][coverage-url]
 [![greenkeeper][greenkeeper-badge]][greenkeeper-url]
 
-> A metalsmith plugin for rendering templates to html
+> A metalsmith plugin for transforming your source files
 
-This plugin allows you to transform your source files. It uses file extensions to infer which transform to use. So files ending in `.njk` will be processed as nunjucks, `.pug` as pug, etc. You can even chain transformations by appending multiple extensions, which will be processed right-to-left.
+This plugin allows you to transform the contents of your source files. It uses file extensions to infer which transform to use. So files ending in `.njk` will be processed as nunjucks, `.md` as markdown, etc. You can even chain transformations by appending multiple extensions, which will be processed right-to-left.
 
 For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [jstransformers](https://github.com/jstransformers) and your templating engine of choice.
 
@@ -15,6 +15,10 @@ For support questions please use [stack overflow][stackoverflow-url] or our [sla
 ```bash
 $ npm install metalsmith-in-place
 ```
+
+This plugin uses [jstransformers](https://github.com/jstransformers/jstransformer) to transform files. Since there are a lot of jstransformers we don't install them automatically, so you'll also need to install the appropriate jstransformers.
+
+For example, to render markdown you would install [jstransformer-markdown](https://github.com/jstransformers/jstransformer-markdown). To render handlebars you would install [jstransformer-handlebars](https://github.com/jstransformers/jstransformer-handlebars). See the [jstransformer organisation](https://github.com/jstransformers) for all available jstransformers and [this dictionary](https://github.com/jstransformers/inputformat-to-jstransformer/blob/master/dictionary.json) to see which extensions map to which jstransformer.
 
 ## Options
 
