@@ -8,9 +8,7 @@
 
 This plugin allows you to transform the contents of your source files. It uses file extensions to infer which transform to use. So files ending in `.njk` will be processed as nunjucks, `.md` as markdown, etc. You can even chain transformations by appending multiple extensions, which will be processed right-to-left.
 
-For usage examples check out our [wiki](https://github.com/metalsmith/metalsmith-in-place/wiki). Feel free to contribute an example if anything is missing, or update the existing ones.
-
-For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [jstransformers](https://github.com/jstransformers) and your templating engine of choice.
+For usage examples check out our [wiki](https://github.com/metalsmith/metalsmith-in-place/wiki). Feel free to contribute an example if anything is missing, or update the existing ones. For support questions please use [stack overflow][stackoverflow-url] or our [slack channel][slack-url]. For templating engine specific questions try the aforementioned channels, as well as the documentation for [jstransformers](https://github.com/jstransformers) and your templating engine of choice.
 
 ## Installation
 
