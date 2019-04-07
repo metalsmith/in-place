@@ -1,3 +1,7 @@
+### 4.3.0 - April 7, 2019
+* prefix rendering errors with filename that caused the error
+* allow async transforms
+
 ### 4.2.0 - July 19, 2018
 * add `suppressNoFilesError` feature 
 
