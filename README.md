@@ -27,6 +27,7 @@ You can pass options to `metalsmith-in-place` with the [Javascript API](https://
 * [pattern](#pattern): optional. Only files that match this pattern will be processed. Accepts a string or an array of strings. The default is `**`.
 * [engineOptions](#engineoptions): optional. Use this to pass options to the jstransformer that's rendering your files. The default is `{}`.
 * [suppressNoFilesError](#suppressnofileserror): optional. The no-files-to-process error will be suppressed. The default is `false`.
+* [setFilename](#setfilename): optional. Some templating engines, like [pug](https://github.com/pugjs/pug), need a `filename` property to be present in the options to be able to process relative includes, extends, etc. Setting this option to `true` will add the current filename to the options passed to each jstransformer. The default is `false`.
 
 ### `pattern`
 
@@ -71,9 +72,39 @@ Would pass `{ "cache": false }` to each used jstransformer.
 
 ### `suppressNoFilesError`
 
-`metalsmith-in-place` throws [an error](#no-files-to-process) if it can’t find any files to process. If you’re doing any kind of incremental builds via something like `metalsmith-watch`, this is problematic as you’re likely only rebuilding files that have changed. This flag allows you to suppress that error ([more info](https://github.com/metalsmith/metalsmith-in-place/pull/151)).
+`metalsmith-in-place` exits with [an error](#no-files-to-process) if it can’t find any files to process. If you’re doing any kind of incremental builds via something like `metalsmith-watch`, this is problematic as you’re likely only rebuilding files that have changed. This flag allows you to suppress that error. So this `metalsmith.json`:
 
-Note that if you have [debugging](#errors-and-debugging) turned on, you’ll see a message denoting that no files are present for processing.
+```json
+{
+  "source": "src",
+  "destination": "build",
+  "plugins": {
+    "metalsmith-in-place": {
+      "suppressNoFilesError": true
+    }
+  }
+}
+```
+
+Would suppress the error if there aren't any files to process. Note that when this option is turned on, if you're logging [debug messages](#errors-and-debugging), you’ll still see a message denoting when there aren't any files for metalsmith-layouts to process.
+
+### `setFilename`
+
+Set this option to `true` if you want to pass the current filename to each jstransformer. The default is `false`. So this `metalsmith.json`:
+
+```json
+{
+  "source": "src",
+  "destination": "build",
+  "plugins": {
+    "metalsmith-in-place": {
+      "setFilename": true
+    }
+  }
+}
+```
+
+Would overwrite `engineOptions.filename` with the absolute path for the file that's currently being processed, and pass that to the jstransformer. For now we're just passing `filename`, but if you encounter a jstransformer that requires a different property, like `path` or something else, let us know and we can add it.
 
 ## Errors and debugging
 
