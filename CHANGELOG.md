@@ -1,3 +1,6 @@
+### 4.4.0 - April 14, 2019
+* add `setFilename` option, to set the absolute file path in the engine options
+
 ### 4.3.0 - April 7, 2019
 * prefix rendering errors with filename that caused the error
 * allow async transforms
