@@ -10,8 +10,7 @@
     "precommit": "lint-staged",
     "lint:js": "eslint '**/*.js'",
     "lint:prettier": "prettier --list-different '**/*.js'",
-    "test": "jest",
-    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "test": "jest"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -21,7 +20,6 @@
   "greenkeeper": {
     "ignore": [
       "assert-dir-equal",
-      "coveralls",
       "eslint",
       "eslint-config-airbnb-base",
       "eslint-config-prettier",
@@ -38,7 +36,6 @@
   },
   "devDependencies": {
     "assert-dir-equal": "^1.1.0",
-    "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-config-prettier": "^2.9.0",
