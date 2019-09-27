@@ -1,3 +1,6 @@
+### 4.4.1 - September 27, 2019
+* fix bug where it would keep processing if the last extension matches a jstransformer and its output extension
+
 ### 4.4.0 - April 14, 2019
 * add `setFilename` option, to set the absolute file path in the engine options
 
