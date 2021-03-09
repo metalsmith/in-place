@@ -54,7 +54,7 @@
     "inputformat-to-jstransformer": "^1.2.1",
     "is-utf8": "^0.2.1",
     "jstransformer": "^1.0.0",
-    "jstransformer-pug": "^0.3.0",
+    "jstransformer-pug": "^0.4.0",
     "multimatch": "^4.0.0"
   }
 }
