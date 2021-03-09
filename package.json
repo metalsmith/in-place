@@ -44,6 +44,7 @@
     "jest": "^24.7.1",
     "jstransformer-handlebars": "^1.0.0",
     "jstransformer-marked": "^1.0.2",
+    "jstransformer-pug": "^0.4.0",
     "lint-staged": "^7.0.0",
     "metalsmith": "^2.1.0",
     "prettier": "^1.9.2",
@@ -54,7 +55,6 @@
     "inputformat-to-jstransformer": "^1.2.1",
     "is-utf8": "^0.2.1",
     "jstransformer": "^1.0.0",
-    "jstransformer-pug": "^0.3.0",
     "multimatch": "^4.0.0"
   }
 }
