@@ -1,3 +1,6 @@
+### 4.4.2 - March 9, 2021
+* move incorrectly installed jstransformer-pug dependency to devDependencies, was only used during testing
+
 ### 4.4.1 - September 27, 2019
 * fix bug where it would keep processing if the last extension matches a jstransformer and its output extension
 
