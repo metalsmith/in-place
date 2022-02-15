@@ -1,11 +1,8 @@
-# Node
-node_modules
-npm-debug.log
-yarn-error.log
-package-lock.json
-
-# Test build results
+npm-debug.log*
+.npm
+*.tgz
+.eslintcache
+.nyc_output
+coverage.info
 test/fixtures/*/build
-
-# Coverage reports
-/coverage
+node_modules

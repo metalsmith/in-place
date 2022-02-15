@@ -2,53 +2,49 @@
   "author": "ismay",
   "description": "A metalsmith plugin for in-place templating.",
   "license": "MIT",
+  "keywords": [
+    "in-place",
+    "templating",
+    "metalsmith-plugin",
+    "metalsmith"
+  ],
   "main": "lib/index.js",
-  "name": "metalsmith-in-place",
-  "repository": "git://github.com/metalsmith/metalsmith-in-place.git",
+  "name": "@metalsmith/in-place",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/metalsmith/in-place.git"
+  },
+  "homepage": "https://github.com/metalsmith/in-place#readme",
+  "bugs": {
+    "url": "https://github.com/metalsmith/in-place/issues"
+  },
   "version": "4.4.2",
   "scripts": {
-    "precommit": "lint-staged",
-    "lint:js": "eslint '**/*.js'",
-    "lint:prettier": "prettier --list-different '**/*.js'",
-    "test": "jest"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "lib/*.js"
-    ]
-  },
-  "greenkeeper": {
-    "ignore": [
-      "assert-dir-equal",
-      "eslint",
-      "eslint-config-airbnb-base",
-      "eslint-config-prettier",
-      "eslint-plugin-import",
-      "husky",
-      "jest",
-      "jstransformer-handlebars",
-      "jstransformer-marked",
-      "lint-staged",
-      "metalsmith",
-      "prettier",
-      "rimraf"
-    ]
+    "changelog": "auto-changelog -u --starting-date 2021-12-01 --sort-commits date-desc --commit-limit false --ignore-commit-pattern '(dev|Release|Merge)'",
+    "coverage": "nyc report --reporter=text-lcov > ./coverage.info",
+    "format": "prettier --write \"**/*.{yml,md,js,json}\"",
+    "format:check": "prettier --list-different \"**/*.{yml,md,js,json}\"",
+    "test": "nyc mocha",
+    "release": "release-it",
+    "lint": "eslint --fix .",
+    "lint:check": "eslint --fix-dry-run ."
   },
   "devDependencies": {
     "assert-dir-equal": "^1.1.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.13.0",
-    "husky": "^0.14.3",
-    "jest": "^24.7.1",
-    "jstransformer-handlebars": "^1.0.0",
-    "jstransformer-marked": "^1.0.2",
+    "auto-changelog": "^2.4.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "husky": "^7.0.4",
+    "jstransformer-handlebars": "^1.2.0",
+    "jstransformer-marked": "^1.1.0",
     "jstransformer-pug": "^0.4.0",
-    "lint-staged": "^7.0.0",
-    "metalsmith": "^2.1.0",
-    "prettier": "^1.9.2",
-    "rimraf": "^2.5.3"
+    "metalsmith": "^2.4.2",
+    "mocha": "^9.2.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.5.1",
+    "release-it": "^14.12.3"
   },
   "dependencies": {
     "debug": "^4.0.0",
@@ -56,5 +52,19 @@
     "is-utf8": "^0.2.1",
     "jstransformer": "^1.0.0",
     "multimatch": "^4.0.0"
+  },
+  "peerDependencies": {
+    "metalsmith": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib",
+    "CHANGELOG.md"
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
