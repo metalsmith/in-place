@@ -20,6 +20,16 @@ describe('@metalsmith/in-place', () => {
     strictEqual(plugin().name, camelCased)
   })
 
+  it('should support filepaths with dots in dirpaths', (done) => {
+    Metalsmith(fixture('dots-in-folderpath'))
+      .use(plugin())
+      .build((err) => {
+        if (err) done(err)
+        equal(fixture('dots-in-folderpath/build'), fixture('dots-in-folderpath/expected'))
+        done()
+      })
+  })
+
   it('should process a single file', (done) => {
     Metalsmith(fixture('single-file'))
       .use(plugin())
