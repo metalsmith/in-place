@@ -58,7 +58,7 @@ Only files that match this pattern will be processed. So this `metalsmith.json`:
 ```
 
 Would only process files within the `./src/blog` folder, because the pattern is
-relative to your source folder. See [multimatch](https://github.com/sindresorhus/multimatch)
+relative to your source folder. See [Metalsmith#match](https://metalsmith.io/api/#Metalsmith+match)
 for further details.
 
 ### `engineOptions`

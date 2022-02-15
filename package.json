@@ -50,11 +50,10 @@
     "debug": "^4.0.0",
     "inputformat-to-jstransformer": "^1.2.1",
     "is-utf8": "^0.2.1",
-    "jstransformer": "^1.0.0",
-    "multimatch": "^4.0.0"
+    "jstransformer": "^1.0.0"
   },
   "peerDependencies": {
-    "metalsmith": "^2.3.0"
+    "metalsmith": "^2.4.1"
   },
   "publishConfig": {
     "access": "public"
@@ -66,5 +65,8 @@
   "directories": {
     "lib": "lib",
     "test": "test"
+  },
+  "engines": {
+    "node": ">=10"
   }
 }
