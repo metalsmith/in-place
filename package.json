@@ -1,6 +1,6 @@
 {
   "author": "ismay",
-  "description": "A metalsmith plugin for in-place templating.",
+  "description": "A metalsmith plugin for in-place templating",
   "license": "MIT",
   "keywords": [
     "in-place",
