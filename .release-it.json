@@ -17,8 +17,8 @@
   },
   "github": {
     "release": true,
-    "releaseName": "@metalsmith/~core-plugin~ ${version}",
+    "releaseName": "@metalsmith/in-place ${version}",
     "tokenRef": "GITHUB_TOKEN",
-    "assets": ["metalsmith-~core-plugin~-${version}.tgz"]
+    "assets": ["metalsmith-in-place-${version}.tgz"]
   }
 }
