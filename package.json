@@ -47,7 +47,6 @@
     "release-it": "^15.5.1"
   },
   "dependencies": {
-    "debug": "^4.0.0",
     "inputformat-to-jstransformer": "^1.2.1",
     "is-utf8": "^0.2.1",
     "jstransformer": "^1.0.0"
