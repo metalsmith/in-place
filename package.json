@@ -53,20 +53,19 @@
     "jstransformer": "^1.0.0"
   },
   "peerDependencies": {
-    "metalsmith": "^2.4.1"
+    "metalsmith": "^2.5.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "lib",
-    "CHANGELOG.md"
+    "lib"
   ],
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   }
 }
