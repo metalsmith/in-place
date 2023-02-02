@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/metalsmith/in-place/issues"
   },
-  "version": "4.5.0",
+  "version": "4.6.0",
   "scripts": {
     "changelog": "auto-changelog -u --starting-date 2021-12-01 --sort-commits date-desc --commit-limit false --ignore-commit-pattern '(dev|Release|Merge)'",
     "coverage": "nyc report --reporter=text-lcov > ./coverage.info",
