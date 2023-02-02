@@ -1,5 +1,6 @@
+/* eslint-env node, mocha */
+
 const { strictEqual } = require('assert')
-const { describe, it } = require('mocha')
 const Metalsmith = require('metalsmith')
 const equal = require('assert-dir-equal')
 const { name } = require('../package.json')
