@@ -20,11 +20,11 @@
   },
   "version": "4.6.0",
   "scripts": {
-    "changelog": "auto-changelog -u --starting-date 2021-12-01 --sort-commits date-desc --commit-limit false --ignore-commit-pattern '(dev|Release|Merge)'",
-    "coverage": "nyc report --reporter=text-lcov > ./coverage.info",
+    "changelog": "auto-changelog -u --starting-date 2021-12-01 --commit-limit false --ignore-commit-pattern '^((dev|chore|ci):|Release)'",
+    "coverage": "npm test && c8 report --reporter=text-lcov > ./coverage.info",
     "format": "prettier --write \"**/*.{yml,md,js,json}\"",
     "format:check": "prettier --list-different \"**/*.{yml,md,js,json}\"",
-    "test": "nyc mocha",
+    "test": "c8 mocha",
     "release": "release-it",
     "lint": "eslint --fix .",
     "lint:check": "eslint --fix-dry-run ."
@@ -41,7 +41,7 @@
     "jstransformer-marked": "^1.2.0",
     "jstransformer-pug": "^0.4.0",
     "metalsmith": "^2.5.1",
-    "mocha": "^9.2.2",
+    "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "prettier": "^2.8.0",
     "release-it": "^15.5.1"
