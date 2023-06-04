@@ -32,19 +32,19 @@
   "devDependencies": {
     "assert-dir-equal": "^1.1.0",
     "auto-changelog": "^2.4.0",
-    "eslint": "^8.29.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.5.1",
-    "husky": "^7.0.4",
+    "eslint-plugin-n": "^16.0.0",
+    "husky": "^8.0.3",
     "jstransformer-handlebars": "^1.2.0",
     "jstransformer-marked": "^1.2.0",
     "jstransformer-pug": "^0.4.0",
-    "metalsmith": "^2.5.1",
+    "metalsmith": "^2.6.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.8.0",
-    "release-it": "^15.5.1"
+    "prettier": "^2.8.8",
+    "release-it": "^15.10.5"
   },
   "dependencies": {
     "inputformat-to-jstransformer": "^1.2.1",
