@@ -1,4 +1,5 @@
 {
+  "name": "@metalsmith/in-place",
   "author": "ismay",
   "description": "A metalsmith plugin for in-place templating",
   "license": "MIT",
@@ -8,8 +9,14 @@
     "metalsmith-plugin",
     "metalsmith"
   ],
-  "main": "lib/index.js",
-  "name": "@metalsmith/in-place",
+  "source": "src/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "type": "module",
+  "exports": {
+    "import": "./lib/index.js",
+    "require": "./lib/index.cjs"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/metalsmith/in-place.git"
@@ -26,6 +33,8 @@
     "format:check": "prettier --list-different \"**/*.{yml,md,js,json}\"",
     "test": "c8 mocha",
     "release": "release-it",
+    "build": "microbundle --target node -f cjs,esm --strict --generateTypes=false",
+    "prepack": "npm run build",
     "lint": "eslint --fix .",
     "lint:check": "eslint --fix-dry-run ."
   },
@@ -42,6 +51,7 @@
     "jstransformer-marked": "^1.2.0",
     "jstransformer-pug": "^0.4.0",
     "metalsmith": "^2.6.0",
+    "microbundle": "^0.15.1",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "prettier": "^2.8.8",

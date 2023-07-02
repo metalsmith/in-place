@@ -1,6 +1,7 @@
-const path = require('path')
-const isUtf8 = require('is-utf8')
-const getTransformer = require('./get-transformer')
+import path from 'node:path'
+import isUtf8 from 'is-utf8'
+import getTransformer from './get-transformer.js'
+
 let debug = () => {
   throw new Error('uninstantiated debug')
 }
@@ -164,4 +165,4 @@ function initializeInPlace(options = defaultOptions) {
   }
 }
 
-module.exports = initializeInPlace
+export default initializeInPlace

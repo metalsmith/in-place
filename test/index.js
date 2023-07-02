@@ -1,11 +1,15 @@
 /* eslint-env node, mocha */
 
-const { strictEqual, deepStrictEqual } = require('assert')
-const Metalsmith = require('metalsmith')
-const equal = require('assert-dir-equal')
-const { name } = require('../package.json')
-const { resolve } = require('path')
-const plugin = require('../lib')
+import { strictEqual, deepStrictEqual } from 'node:assert'
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { readFileSync } from 'node:fs'
+import Metalsmith from 'metalsmith'
+import equal from 'assert-dir-equal'
+import plugin from '../src/index.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const { name } = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'))
 
 function fixture(p) {
   return resolve(__dirname, 'fixtures', p)
