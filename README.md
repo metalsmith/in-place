@@ -38,7 +38,6 @@ You can pass options to `@metalsmith/in-place` with the [Javascript API](https:/
 
 - [pattern](#pattern): optional. Only files that match this pattern will be processed. Accepts a string or an array of strings. The default is `**`.
 - [engineOptions](#engineoptions): optional. Use this to pass options to the jstransformer that's rendering your files. The default is `{}`.
-- [suppressNoFilesError](#suppressnofileserror): optional. The no-files-to-process error will be suppressed. The default is `false`.
 - [setFilename](#setfilename): optional. Some templating engines, like [pug](https://github.com/pugjs/pug), need a `filename` property to be present in the options to be able to process relative includes, extends, etc. Setting this option to `true` will add the current filename to the options passed to each jstransformer. The default is `false`.
 
 ### `pattern`
@@ -81,24 +80,6 @@ Use this to pass options to the jstransformer that's rendering your templates. S
 ```
 
 Would pass `{ "cache": false }` to each used jstransformer.
-
-### `suppressNoFilesError`
-
-`@metalsmith/in-place` exits with [an error](#no-files-to-process) if it can’t find any files to process. If you’re doing any kind of incremental builds via something like `metalsmith-watch`, this is problematic as you’re likely only rebuilding files that have changed. This flag allows you to suppress that error. So this `metalsmith.json`:
-
-```json
-{
-  "source": "src",
-  "destination": "build",
-  "plugins": {
-    "@metalsmith/in-place": {
-      "suppressNoFilesError": true
-    }
-  }
-}
-```
-
-Would suppress the error if there aren't any files to process. Note that when this option is turned on, if you're logging [debug messages](#errors-and-debugging), you’ll still see a message denoting when there aren't any files for metalsmith-layouts to process.
 
 ### `setFilename`
 

@@ -1,6 +1,6 @@
 /* eslint-env node, mocha */
 
-const { strictEqual } = require('assert')
+const { strictEqual, deepStrictEqual } = require('assert')
 const Metalsmith = require('metalsmith')
 const equal = require('assert-dir-equal')
 const { name } = require('../package.json')
@@ -82,24 +82,37 @@ describe('@metalsmith/in-place', () => {
   })
 
   it('should return an error when there are no valid files to process', (done) => {
-    Metalsmith(fixture('no-files'))
-      .use(plugin())
-      .build((err) => {
-        strictEqual(err instanceof Error, true)
-        strictEqual(
-          err.message,
-          'no files to process. See https://www.npmjs.com/package/@metalsmith/in-place#no-files-to-process'
-        )
-        done()
+    const ms = Metalsmith(fixture('no-files')),
+      output = []
+    const Debugger = (...args) => {
+      output.push(['log', ...args])
+    }
+    Object.assign(Debugger, {
+      info: (...args) => {
+        output.push(['info', ...args])
+      },
+      warn: (...args) => {
+        output.push(['warn', ...args])
+      },
+      error: (...args) => {
+        output.push(['error', ...args])
+      }
+    })
+    ms.env('DEBUG', '*:warn')
+      .use(() => {
+        ms.debug = () => Debugger
       })
-  })
-
-  it('should suppress the no files error when flag is set', (done) => {
-    Metalsmith(fixture('no-files'))
-      .use(plugin({ suppressNoFilesError: true }))
-      .build((err) => {
-        strictEqual(err, null)
-        done()
+      .use(plugin())
+      .build(() => {
+        try {
+          deepStrictEqual(output.slice(output.length - 2), [
+            ['warn', 'validation failed, index does not have an extension'],
+            ['warn', 'No valid files to process.']
+          ])
+          done()
+        } catch (err) {
+          done(err)
+        }
       })
   })
 
