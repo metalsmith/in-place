@@ -122,14 +122,14 @@ describe('@metalsmith/in-place', () => {
   })
 
   it('should resolve the transform option flexibly', (done) => {
-    Metalsmith(fixture('dots-in-folderpath'))
+    // Metalsmith.directory() doesn't really matter here, we just need to validate it doesn't return an error
+    Metalsmith(fixture('transform-option'))
       .use(plugin({ transform: 'handlebars' }))
       .use(plugin({ transform: 'jstransformer-marked' }))
       .use(plugin({ transform: jsTransformerPug }))
       .build((err) => {
-        if (err) done(err)
         try {
-          equal(fixture('stop-processing/build'), fixture('stop-processing/expected'))
+          strictEqual(err, null)
           done()
         } catch (err) {
           done(err)
