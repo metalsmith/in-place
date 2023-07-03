@@ -1,10 +1,42 @@
 import path from 'node:path'
 import isUtf8 from 'is-utf8'
-import getTransformer from './get-transformer.js'
+import jstransformer from 'jstransformer'
 
+async function getTransformer(namePathOrTransformer) {
+  let transform = null
+  const t = namePathOrTransformer
+  const tName = t
+  const tPath = t
+
+  // let the jstransformer constructor throw errors
+  if (typeof t !== 'string') {
+    transform = Promise.resolve(t)
+  } else {
+    if (path.isAbsolute(tPath) || tPath.startsWith('.') || tName.startsWith('jstransformer-')) {
+      debug('Importing transformer: %s', tPath)
+      transform = import(tPath).then((t) => t.default)
+    } else {
+      debug('Importing transformer: jstransformer-%s', tName)
+      // suppose a shorthand where the jstransformer- prefix is omitted, more likely
+      transform = import(`jstransformer-${tName}`)
+        .then((t) => t.default)
+        .catch(() => {
+          // else fall back to trying to import the name
+          debug.warn('"jstransformer-%s" not found, trying "%s" instead', tName, tName)
+          return import(tName).then((t) => t.default)
+        })
+    }
+  }
+  return transform.then((t) => {
+    return jstransformer(t)
+  })
+}
+
+/* c8 ignore start */
 let debug = () => {
   throw new Error('uninstantiated debug')
 }
+/* c8 ignore end */
 
 function parseFilepath(filename) {
   const isNested = filename.includes(path.sep)
@@ -17,7 +49,7 @@ function parseFilepath(filename) {
  * Engine, renders file contents with all available transformers
  */
 
-function render({ filename, files, metalsmith, settings }) {
+async function render({ filename, files, metalsmith, settings, transform }) {
   const { dirname, base, extensions } = parseFilepath(filename)
   const file = files[filename]
   const engineOptions = Object.assign({}, settings.engineOptions)
@@ -27,21 +59,14 @@ function render({ filename, files, metalsmith, settings }) {
   debug(`rendering ${filename}`)
 
   const ext = extensions.pop()
-  const transform = getTransformer(ext)
   const locals = Object.assign({}, metadata, file)
-
-  // Stop if the current extension can't be transformed
-  if (!transform) {
-    debug(`no transformer available for ${ext} extension for ${filename}`)
-    return Promise.resolve()
-  }
 
   // Stringify file contents
   const contents = file.contents.toString()
 
   // If this is the last extension, replace it with a new one
   if (isLastExtension) {
-    debug(`last extension reached, replacing last extension with ${transform.outputFormat}`)
+    debug(`last extension reached, replacing extension with ${transform.outputFormat}`)
     extensions.push(transform.outputFormat)
   }
 
@@ -58,25 +83,17 @@ function render({ filename, files, metalsmith, settings }) {
     .renderAsync(contents, engineOptions, locals)
     .then((rendered) => {
       // Delete old file
-      delete files[filename] // eslint-disable-line no-param-reassign
+      delete files[filename]
 
       // Update files with the newly rendered file
       const newName = [path.join(dirname, base), ...extensions].join('.')
-      files[newName] = file // eslint-disable-line no-param-reassign
-      files[newName].contents = Buffer.from(rendered.body) // eslint-disable-line no-param-reassign
+      files[newName] = file
+      files[newName].contents = Buffer.from(rendered.body)
 
       debug(`done rendering ${filename}, renamed to ${newName}`)
-
-      // Stop rendering if this was the last extension
-      if (isLastExtension) {
-        return Promise.resolve()
-      }
-
-      // Otherwise, keep rendering until there are no applicable transformers left
-      return render({ filename: newName, files, metalsmith, settings })
     })
     .catch((err) => {
-      err.message = `${filename}: ${err.message}` // eslint-disable-line no-param-reassign
+      err.message = `${filename}: ${err.message}`
       throw err
     })
 }
@@ -85,31 +102,27 @@ function render({ filename, files, metalsmith, settings }) {
  * Validate, checks whether a file should be processed
  */
 
-function validate({ filename, files }) {
+function validate({ filename, files, transform }) {
   debug(`validating ${filename}`)
   const { extensions } = parseFilepath(filename)
 
-  // Files without an extension cannot be processed
-  if (!extensions.length) {
-    debug.warn(`validation failed, ${filename} does not have an extension`)
+  // IF the transform has inputFormats defined, invalidate the file if it has no matching extname
+  if (transform.inputFormats && !transform.inputFormats.includes(extensions.slice(-1)[0])) {
+    debug.warn(
+      'Validation failed for file "%s", transformer %s supports extensions %s.',
+      filename,
+      transform.name,
+      transform.inputFormats.map((i) => `.${i}`).join(', ')
+    )
     return false
   }
 
   // Files that are not utf8 are ignored
   if (!isUtf8(files[filename].contents)) {
-    debug.warn(`validation failed, ${filename} is not utf-8`)
+    debug.warn(`Validation failed, %s is not utf-8`, filename)
     return false
   }
-
-  // Files without an applicable jstransformer are ignored
-  const extension = extensions[extensions.length - 1]
-  const transformer = getTransformer(extension)
-
-  if (!transformer) {
-    debug.warn(`validation failed, no jstransformer found for last extension of ${filename}`)
-  }
-
-  return transformer
+  return true
 }
 
 /**
@@ -133,10 +146,10 @@ const defaultOptions = {
  */
 function initializeInPlace(options = defaultOptions) {
   const settings = Object.assign({}, defaultOptions, options)
+  let transform
 
-  return function inPlace(files, metalsmith, done) {
+  return async function inPlace(files, metalsmith, done) {
     debug = metalsmith.debug('@metalsmith/in-place')
-    debug('Running with options %O', settings)
 
     // Check whether the pattern option is valid
     if (!(typeof settings.pattern === 'string' || Array.isArray(settings.pattern))) {
@@ -147,21 +160,39 @@ function initializeInPlace(options = defaultOptions) {
       )
     }
 
+    // skip resolving the transform option on repeat runs
+    if (!transform) {
+      try {
+        transform = await getTransformer(options.transform)
+      } catch (err) {
+        // pass through jstransformer & Node import resolution errors
+        return done(err)
+      }
+    }
+
+    if (settings.pattern === defaultOptions.pattern) {
+      settings.pattern = `${settings.pattern}/*.{${transform.inputFormats.join(',')}}`
+    }
+
+    debug('Running with options %O', settings)
+
     const matchedFiles = metalsmith.match(settings.pattern)
 
     // Filter files by validity, pass basename to avoid dots in folder path
-    const validFiles = matchedFiles.filter((filename) => validate({ filename, files }))
+    const validFiles = matchedFiles.filter((filename) => validate({ filename, files, transform }))
 
-    // Let the user know when there are no files to process, usually caused by missing jstransformer
+    // Let the user know when there are no files to process
     if (validFiles.length === 0) {
       debug.warn('No valid files to process.')
       return done()
+    } else {
+      debug('Rendering %s files', validFiles.length)
     }
 
     // Map all files that should be processed to an array of promises and call done when finished
-    return Promise.all(validFiles.map((filename) => render({ filename, files, metalsmith, settings })))
+    return Promise.all(validFiles.map((filename) => render({ filename, files, metalsmith, settings, transform })))
       .then(() => done())
-      .catch(/* istanbul ignore next */ (error) => done(error))
+      .catch((error) => done(error))
   }
 }
 
