@@ -330,9 +330,9 @@ describe('@metalsmith/in-place', () => {
       })
   })
 
-  it('should accept an option to set the filename in engine options', (done) => {
+  it('should understand the filename option in engine options to allow working with Pug and other transformers with a filename option', (done) => {
     Metalsmith(fixture('set-filename'))
-      .use(plugin({ setFilename: true, transform: 'pug' }))
+      .use(plugin({ transform: 'pug', engineOptions: { filename: true } }))
       .build((err) => {
         if (err) done(err)
         equal(fixture('set-filename/build'), fixture('set-filename/expected'))

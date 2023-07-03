@@ -38,7 +38,6 @@ You can pass options to `@metalsmith/in-place` with the [Javascript API](https:/
 
 - [pattern](#pattern): optional. Only files that match this pattern will be processed. Accepts a string or an array of strings. The default is `**`.
 - [engineOptions](#engineoptions): optional. Use this to pass options to the jstransformer that's rendering your files. The default is `{}`.
-- [setFilename](#setfilename): optional. Some templating engines, like [pug](https://github.com/pugjs/pug), need a `filename` property to be present in the options to be able to process relative includes, extends, etc. Setting this option to `true` will add the current filename to the options passed to each jstransformer. The default is `false`.
 
 ### `pattern`
 
@@ -71,6 +70,7 @@ Use this to pass options to the jstransformer that's rendering your templates. S
   "destination": "build",
   "plugins": {
     "@metalsmith/in-place": {
+      "transform": "nunjucks",
       "engineOptions": {
         "cache": false
       }
@@ -79,27 +79,9 @@ Use this to pass options to the jstransformer that's rendering your templates. S
 }
 ```
 
-Would pass `{ "cache": false }` to each used jstransformer.
+Would pass `{ "cache": false }` to `jstransformer-nunjucks`.
 
-### `setFilename`
-
-Set this option to `true` if you want to pass the current filename to each jstransformer. The default is `false`. So this `metalsmith.json`:
-
-```json
-{
-  "source": "src",
-  "destination": "build",
-  "plugins": [
-    {
-      "@metalsmith/in-place": {
-        "setFilename": true
-      }
-    }
-  ]
-}
-```
-
-Would overwrite `engineOptions.filename` with the absolute path for the file that's currently being processed, and pass that to the jstransformer. For now we're just passing `filename`, but if you encounter a jstransformer that requires a different property, like `path` or something else, let us know and we can add it.
+If you are using [Pug](https://pugjs.org/api/getting-started.html), make sure to pass `engineOptions: { filename: true }`. This will ensure the filename of each processed file is passed to the render method.
 
 ## Errors and debugging
 

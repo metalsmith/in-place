@@ -53,9 +53,14 @@ async function render({ filename, files, metalsmith, settings, transform }) {
   const { dirname, base, extensions } = parseFilepath(filename)
   const file = files[filename]
   const engineOptions = Object.assign({}, settings.engineOptions)
+  if (settings.engineOptions.filename) {
+    Object.assign(engineOptions, {
+      // set the filename in options for jstransformers requiring it (like Pug)
+      filename: metalsmith.path(metalsmith.source(), filename)
+    })
+  }
   const metadata = metalsmith.metadata()
   const isLastExtension = extensions.length === 1
-
   debug(`rendering ${filename}`)
 
   const ext = extensions.pop()
@@ -68,12 +73,6 @@ async function render({ filename, files, metalsmith, settings, transform }) {
   if (isLastExtension) {
     debug(`last extension reached, replacing extension with ${transform.outputFormat}`)
     extensions.push(transform.outputFormat)
-  }
-
-  // Check if the filename should be set in the engine options
-  if (settings.setFilename) {
-    debug(`setting filename in the engine options`)
-    engineOptions.filename = path.join(metalsmith.source(), filename)
   }
 
   // Transform the contents
@@ -129,14 +128,12 @@ function validate({ filename, files, transform }) {
  * @typedef {Object} Options
  * @property {string} [pattern='**'] (*optional*) Limit the files to process by 1 or more glob patterns. Defaults to `'**'` (all)
  * @property {Object} [engineOptions={}] (*optional*) Pass options to the jstransformer templating engine that's rendering your files. The default is `{}`
- * @property {boolean} [setFilename=false] (*optional*) Some templating engines, like [pug](https://github.com/pugjs/pug), need a `filename` property to be present in the options to be able to process relative includes, extends, etc. Setting this option to `true` will add the current filename to the options passed to each jstransformer. The default is `false`
  **/
 
 /** @type {Options} */
 const defaultOptions = {
   pattern: '**',
-  engineOptions: {},
-  setFilename: false
+  engineOptions: {}
 }
 
 /**
