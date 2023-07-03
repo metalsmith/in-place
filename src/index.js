@@ -2,6 +2,53 @@ import path from 'node:path'
 import isUtf8 from 'is-utf8'
 import jstransformer from 'jstransformer'
 
+/**
+ * @callback Render
+ * @param {string} source
+ * @param {Object} options
+ * @param {Object} locals
+ * @returns {string}
+ */
+
+/**
+ * @callback RenderAsync
+ * @param {string} source
+ * @param {Object} options
+ * @param {Object} locals
+ * @param {Function} callback
+ * @returns {Promise<string>}
+ */
+
+/**
+ * @callback Compile
+ * @param {string} source
+ * @param {Object} options
+ * @returns {string}
+ */
+
+/**
+ * @callback CompileAsync
+ * @param {string} source
+ * @param {Object} options
+ * @param {Function} callback
+ * @returns {Promise<string>}
+ */
+
+/**
+ * @typedef {Object} JsTransformer
+ * @property {string} name
+ * @property {string[]} inputFormats
+ * @property {string} outputFormat
+ * @property {Render} [render]
+ * @property {RenderAsync} [renderAsync]
+ * @property {Compile} [compile]
+ * @property {CompileAsync} [compileAsync]
+ */
+
+/**
+ * @param {string|JsTransformer} namePathOrTransformer
+ * @returns {Promise<JsTransformer>}
+ */
 async function getTransformer(namePathOrTransformer) {
   let transform = null
   const t = namePathOrTransformer
@@ -126,6 +173,7 @@ function validate({ filename, files, transform }) {
 
 /**
  * @typedef {Object} Options
+ * @property {string|JsTransformer} transform Jstransformer to run
  * @property {string} [pattern='**'] (*optional*) Limit the files to process by 1 or more glob patterns. Defaults to `'**'` (all)
  * @property {Object} [engineOptions={}] (*optional*) Pass options to the jstransformer templating engine that's rendering your files. The default is `{}`
  **/
