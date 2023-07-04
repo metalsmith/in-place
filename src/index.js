@@ -173,8 +173,8 @@ function validate({ filename, files, transform }) {
 
 /**
  * @typedef {Object} Options
- * @property {string|JsTransformer} transform Jstransformer to run
- * @property {string} [pattern='**'] (*optional*) Limit the files to process by 1 or more glob patterns. Defaults to `'**'` (all)
+ * @property {string|JsTransformer} transform Jstransformer to run: name of a node module or local JS module path (starting with `.`) whose default export is a jstransformer. As a shorthand for existing transformers you can remove the `jstransformer-` prefix: `marked` will be understood as `jstransformer-marked`. Or an actual jstransformer; an object with `name`, `inputFormats`,`outputFormat`, and at least one of the render methods `render`, `renderAsync`, `compile` or `compileAsync` described in the [jstransformer API docs](https://github.com/jstransformers/jstransformer#api)
+ * @property {string} [pattern='**\/*.<transform.inputFormats>'] (*optional*) One or more paths or glob patterns to limit the scope of the transform. Defaults to `'**\/*.<transform.inputFormats>'`
  * @property {Object} [engineOptions={}] (*optional*) Pass options to the jstransformer templating engine that's rendering your files. The default is `{}`
  **/
 
