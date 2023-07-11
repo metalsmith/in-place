@@ -29,6 +29,11 @@ export type Options = {
    * @default {}
    */
   engineOptions?: any;
+  /**
+   * Pass `''` to remove the extension or `'.<extname>'` to keep or rename it.
+   * @default transform.outputFormat
+   */
+  extname?: string;
 };
 /**
  * A metalsmith plugin for in-place templating
