@@ -467,10 +467,7 @@ describe('@metalsmith/in-place', () => {
         )
       })
       it('filepath with periods in basename', () => {
-        strictEqual(
-          handleExtname('some.release/v2.4.0.html.njk', options.defaults),
-          'some.release/v2.4.0.html'
-        )
+        strictEqual(handleExtname('some.release/v2.4.0.html.njk', options.defaults), 'some.release/v2.4.0.html')
       })
     })
   })
