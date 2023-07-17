@@ -1,6 +1,5 @@
-import path from 'node:path'
 import isUtf8 from 'is-utf8'
-import jstransformer from 'jstransformer'
+import { parseFilepath, handleExtname, getTransformer } from './utils.js'
 
 /**
  * @callback Render
@@ -45,72 +44,11 @@ import jstransformer from 'jstransformer'
  * @property {CompileAsync} [compileAsync]
  */
 
-/**
- * @param {string|JsTransformer} namePathOrTransformer
- * @returns {Promise<JsTransformer>}
- */
-async function getTransformer(namePathOrTransformer) {
-  let transform = null
-  const t = namePathOrTransformer
-  const tName = t
-  const tPath = t
-
-  // let the jstransformer constructor throw errors
-  if (typeof t !== 'string') {
-    transform = Promise.resolve(t)
-  } else {
-    if (path.isAbsolute(tPath) || tPath.startsWith('.') || tName.startsWith('jstransformer-')) {
-      debug('Importing transformer: %s', tPath)
-      transform = import(tPath).then((t) => t.default)
-    } else {
-      debug('Importing transformer: jstransformer-%s', tName)
-      // suppose a shorthand where the jstransformer- prefix is omitted, more likely
-      transform = import(`jstransformer-${tName}`)
-        .then((t) => t.default)
-        .catch(() => {
-          // else fall back to trying to import the name
-          debug.warn('"jstransformer-%s" not found, trying "%s" instead', tName, tName)
-          return import(tName).then((t) => t.default)
-        })
-    }
-  }
-  return transform.then((t) => {
-    return jstransformer(t)
-  })
-}
-
 /* c8 ignore start */
 let debug = () => {
   throw new Error('uninstantiated debug')
 }
 /* c8 ignore end */
-
-function parseFilepath(filename) {
-  const isNested = filename.includes(path.sep)
-  const dirname = isNested ? path.dirname(filename) : ''
-  const [base, ...extensions] = path.basename(filename).split('.')
-  return { dirname, base, extensions }
-}
-
-/**
- * @param {string} filename
- * @param {Options} opts
- * @returns
- */
-export function handleExtname(filename, opts) {
-  const { dirname, base, extensions } = parseFilepath(filename)
-  const extname = opts.extname && opts.extname.slice(1)
-  // decouples file extension chaining order from transformer usage order
-  for (let i = extensions.length; i--; ) {
-    if (opts.transform.inputFormats.includes(extensions[i])) {
-      extensions.splice(i, 1)
-      break
-    }
-  }
-  const isLast = !extensions.length
-  if (isLast && extname) extensions.push(extname)
-  return [path.join(dirname, base), ...extensions].join('.')
-}
 
 async function render({ filename, files, metalsmith, options, transform }) {
   const file = files[filename]
@@ -183,7 +121,7 @@ function validate({ filename, files, transform }) {
 /**
  * Set default options based on jstransformer `transform`
  * @param {JsTransformer} transform
- * @returns
+ * @returns {Options}
  */
 function normalizeOptions(transform) {
   const extMatch =
@@ -218,7 +156,7 @@ function initializeInPlace(options = {}) {
     // skip resolving the transform option on repeat runs
     if (!transform) {
       try {
-        transform = await getTransformer(options.transform)
+        transform = await getTransformer(options.transform, debug)
       } catch (err) {
         // pass through jstransformer & Node import resolution errors
         return done(err)
