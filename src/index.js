@@ -138,7 +138,7 @@ function normalizeOptions(transform) {
  * @param {Options} options
  * @returns {import('metalsmith').Plugin}
  */
-function initializeInPlace(options = {}) {
+function inPlace(options = {}) {
   let transform
 
   return async function inPlace(files, metalsmith, done) {
@@ -187,4 +187,4 @@ function initializeInPlace(options = {}) {
   }
 }
 
-export default initializeInPlace
+export default inPlace
