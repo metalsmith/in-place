@@ -1,12 +1,13 @@
 /* eslint-env node, mocha */
 
 import { strictEqual, deepStrictEqual } from 'node:assert'
-import { resolve, dirname } from 'node:path'
+import { resolve, dirname, normalize } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readFileSync } from 'node:fs'
 import Metalsmith from 'metalsmith'
 import equal from 'assert-dir-equal'
-import plugin, { handleExtname } from '../src/index.js'
+import plugin from '../src/index.js'
+import { handleExtname } from '../src/utils.js'
 import jsTransformerPug from 'jstransformer-pug'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -462,12 +463,15 @@ describe('@metalsmith/in-place', () => {
       })
       it('filepath with periods in dirname', () => {
         strictEqual(
-          handleExtname('some.release/v2.4.0/index.html.njk', options.defaults),
-          'some.release/v2.4.0/index.html'
+          handleExtname(normalize('some.release/v2.4.0/index.html.njk'), options.defaults),
+          normalize('some.release/v2.4.0/index.html')
         )
       })
       it('filepath with periods in basename', () => {
-        strictEqual(handleExtname('some.release/v2.4.0.html.njk', options.defaults), 'some.release/v2.4.0.html')
+        strictEqual(
+          handleExtname(normalize('some.release/v2.4.0.html.njk'), options.defaults),
+          normalize('some.release/v2.4.0.html')
+        )
       })
     })
   })
