@@ -175,10 +175,11 @@ function inPlace(options = {}) {
     // Let the user know when there are no files to process
     if (validFiles.length === 0) {
       debug.warn('No valid files to process.')
-      return done()
-    } else {
-      debug('Rendering %s files', validFiles.length)
+      done()
+      return
     }
+
+    debug('Rendering %s files', validFiles.length)
 
     // Map all files that should be processed to an array of promises and call done when finished
     return Promise.all(validFiles.map((filename) => render({ filename, files, metalsmith, options, transform })))

@@ -100,8 +100,8 @@ describe('@metalsmith/in-place', () => {
     })
   })
 
-  it('should throw on unresolved transform option', (done) => {
-    Promise.allSettled([
+  it('should throw on unresolved transform option', () => {
+    return Promise.allSettled([
       Metalsmith(fixture('transform-option'))
         .env('DEBUG', process.env.DEBUG)
         .use(plugin({ transform: 'invalid' }))
@@ -115,17 +115,15 @@ describe('@metalsmith/in-place', () => {
         .use(plugin({ transform: 'jstransformer-invalid' }))
         .process()
     ]).then((promises) => {
-      for (let i = 0; i < 3; i++) {
-        const reason = promises[i].reason
-        try {
-          strictEqual(reason instanceof Error, true)
-          strictEqual(reason.code, 'ERR_MODULE_NOT_FOUND')
-        } catch (err) {
-          done(err)
-          break
-        }
-      }
-      done()
+      deepStrictEqual(
+        promises.map((p) => p.status),
+        ['rejected', 'rejected', 'rejected']
+      )
+      // in ESM, this yields ERR_MODULE_NOT_FOUND, but in CJS the ERR_ prefix is omitted
+      deepStrictEqual(
+        promises.map((p) => p.reason.code.replace('ERR_', '')),
+        ['MODULE_NOT_FOUND', 'MODULE_NOT_FOUND', 'MODULE_NOT_FOUND']
+      )
     })
   })
 

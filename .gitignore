@@ -5,6 +5,7 @@ npm-debug.log*
 coverage
 coverage.info
 test/fixtures/*/build
+test/index.cjs
 node_modules
 lib/*.map
 lib/*.cjs

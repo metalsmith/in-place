@@ -32,6 +32,7 @@
     "format": "prettier --write \"**/*.{yml,md,js,json}\"",
     "format:check": "prettier --list-different \"**/*.{yml,md,js,json}\"",
     "test": "c8 mocha",
+    "test:cjs": "microbundle -i test/index.js -o test/index.cjs -f cjs --target=node --pkg-main=false --no-sourcemap --external assert-dir-equal,metalsmith,jstransformer-pug --generateTypes=false && mocha test/index.cjs",
     "release": "release-it",
     "build": "microbundle --target node -f cjs,esm --strict --generateTypes=false",
     "prepack": "npm run build",

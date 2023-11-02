@@ -1,5 +1,5 @@
 import { Plugin } from 'metalsmith';
-export default initializeInPlace;
+export default inPlace;
 export type Render = (source: string, options: any, locals: any) => string;
 export type RenderAsync = (source: string, options: any, locals: any, callback: Function) => Promise<string>;
 export type Compile = (source: string, options: any) => string;
@@ -54,4 +54,4 @@ export type Options = {
  *     }
  *   }}))
  */
-declare function initializeInPlace(options?: Options): Plugin;
+declare function inPlace(options?: Options): Plugin;
