@@ -1,5 +1,3 @@
-/* eslint-env node, mocha */
-
 import { strictEqual, deepStrictEqual } from 'node:assert'
 import { resolve, dirname, normalize } from 'node:path'
 import { fileURLToPath } from 'node:url'
